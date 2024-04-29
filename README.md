@@ -1,1 +1,1 @@
-# playpals-project
+# clash-royale-project
