@@ -28,6 +28,7 @@ html, body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transition: 0.2s all;
 }
 .relevant-button{
     width: 96%;
@@ -36,6 +37,7 @@ html, body{
     background-color: rgb(224, 224, 224);
     position: relative;
     text-align: center;
+    transition: 0.2s all;
 }
 .top-relevant-button{
     width: 100%;
@@ -45,6 +47,7 @@ html, body{
     display: flex;
     justify-content: end;
     overflow: hidden;
+    transition: 0.2s all;
 }
 .shine-ball-button{
     height: 5px;

@@ -21,6 +21,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    transition: 0.3s all;
 }
 .inner-header{
     width: 80%;
@@ -67,7 +68,7 @@
     transition: 0.3s all;
 }
 .nav-link:hover{
-    color: rgb(202, 202, 202);
+    color: rgb(199, 199, 199);
     
 }
 
@@ -114,21 +115,42 @@
         width: 100%;
         padding: 0 15px 0 15px;
     }
-    .header{
+    .header.active{
         background-color: #FFF;
     }
     .nav-bar{
         background-color: #FFF;
         width: 100%;
-        height: auto;
+        height: 320px;
         padding-bottom: 50px;
         position: absolute;
-        top: 100px;
+        /* top: 100px; */
+        top: -1000px;
         left: 0;
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.37);
-
+        transition: 0.3s ease-out;
+    }
+    .nav-bar.active{
+        display: flex;
+        top: 100px;
+    }
+    #btn-burger-mobile.active  .button-wrapper.yellow{
+        background-color: #9C1814;
+    }
+    #btn-burger-mobile.active  .inner-button.yellow{
+        box-shadow: inset 0 5px 5px -5px #FC4262;
+        background-color: #FB3330;
+    }
+    #btn-burger-mobile.active  .relevant-button.yellow{
+        background-color: #FC4262;
+    }
+    #btn-burger-mobile.active  .top-relevant-button.yellow{
+        background-color: #FF6666;
+    }
+    #btn-burger-mobile.active  .text-button{
+        
     }
     .nav-list{
         gap: 15px;
