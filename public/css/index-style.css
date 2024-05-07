@@ -3,6 +3,15 @@
 .main{
     width: 100%;
     height: 600px;
+    background-color: blue;
+    background-image: url('../assets/img/background-main.jpg');
+    background-position: left bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    @media (max-width: 728px) {
+        background-position: center;
+    }
 }
 /* header */
 .header{
@@ -47,5 +56,82 @@
 }
 .nav-link{
     text-decoration: none;
-    color: gray;
+    color: #FFF;
+    text-shadow: 
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+
+    0px 2px 0px #000000;
+    transition: 0.3s all;
+}
+.nav-link:hover{
+    color: rgb(202, 202, 202);
+    
+}
+
+.button-wrapper.yellow{
+    background-color: #AF6B06;
+}
+.inner-button.yellow{
+    box-shadow: inset 0 5px 5px -5px #FFBB2A;
+    background-color: #FDA70C;
+}
+.relevant-button.yellow{
+    background-color: #FFBB2A;
+}
+.top-relevant-button.yellow{
+    background-color: #FFD053;
+}
+
+
+
+.close-button-mobile{
+    display: none;
+}
+.button-wrapper.btn-burger{
+    width: 50px;
+    height: 50px;
+}
+.button-wrapper.btn-burger .text-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+.button-wrapper.btn-burger .text-button > img{
+    filter:drop-shadow(-0.5px -0.5px 0px #00000075) 
+            drop-shadow(1px -1px 0px #00000075) 
+            drop-shadow(-1px 1px 0px #00000075) 
+            drop-shadow(1px 1px 0px #00000075) ;
+}
+
+@media (max-width: 980px) {
+    .close-button-mobile{
+        display: flex;
+    }
+    .inner-header{
+        width: 100%;
+        padding: 0 15px 0 15px;
+    }
+    .header{
+        background-color: #FFF;
+    }
+    .nav-bar{
+        background-color: #FFF;
+        width: 100%;
+        height: auto;
+        padding-bottom: 50px;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.37);
+
+    }
+    .nav-list{
+        gap: 15px;
+        flex-direction: column;
+    }
 }

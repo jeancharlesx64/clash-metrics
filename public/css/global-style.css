@@ -16,6 +16,8 @@ html, body{
     border: 2px solid black;
     border-radius: 8px;
     background-color: gray;
+    font-family: 'Bungee', Arial, Helvetica, sans-serif;
+    transition: 0.2s all;
 }
 .inner-button{
     width: 100%;
@@ -63,5 +65,11 @@ html, body{
         -1px 1px 0 #000,
         1px 1px 0 #000,
 
-        -2px 2px 0px #000000;
+        0px 2px 0px #000000;
+}
+.btn{
+    cursor: pointer;
+}
+.btn:hover .button-wrapper{
+    transform: scale(0.95);
 }
