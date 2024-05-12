@@ -1,4 +1,7 @@
-@import 'https://fonts.googleapis.com/css?family=Bungee';
+@font-face {
+    font-family: 'cr';
+    src: url('../font/clash-royale/cr.ttf');
+}
 *{
     padding: 0;
     margin: 0;
@@ -6,17 +9,22 @@
 }
 html, body{
     height: 100%;
+    background-color: blue;
 }
 
 
 /* button */
+.ref-link{
+    display: block;
+    width: 130px;
+}
 .button-wrapper{
     width: 130px;
     height: 50px;
     border: 2px solid black;
     border-radius: 8px;
     background-color: gray;
-    font-family: 'Bungee', Arial, Helvetica, sans-serif;
+    font-family: 'cr', Arial, Helvetica, sans-serif;
     transition: 0.2s all;
 }
 .inner-button{
@@ -69,6 +77,7 @@ html, body{
         1px 1px 0 #000,
 
         0px 2px 0px #000000;
+    width: 130px;
 }
 .btn{
     cursor: pointer;
@@ -76,3 +85,68 @@ html, body{
 .btn:hover .button-wrapper{
     transform: scale(0.95);
 }
+
+
+/* amarelo */
+.button-wrapper.yellow{
+    background-color: #AF6B06;
+}
+.inner-button.yellow{
+    box-shadow: inset 0 5px 5px -5px #FFBB2A;
+    background-color: #FDA70C;
+}
+.relevant-button.yellow{
+    background-color: #FFBB2A;
+}
+.top-relevant-button.yellow{
+    background-color: #FFD053;
+}
+
+/* vermelho */
+.button-wrapper.red{
+    background-color: #9C1814;
+}
+.inner-button.red{
+    box-shadow: inset 0 5px 5px -5px #FF6666;
+    background-color: #FC3937;
+}
+.relevant-button.red{
+    background-color: #FC4262;
+}
+.top-relevant-button.red{
+    background-color: #FF6666;
+}
+
+/* verde */
+.button-wrapper.red{
+    background-color: #0D8F23;
+}
+.inner-button.red{
+    box-shadow: inset 0 5px 5px -5px #50FF65;
+    background-color: #09CC48;
+}
+.relevant-button.red{
+    background-color: #30ED45;
+}
+.top-relevant-button.red{
+    background-color: #50FF65;
+}
+
+/* azul */
+.button-wrapper.blue{
+    background-color: #004FA5;
+}
+.inner-button.blue{
+    box-shadow: inset 0 5px 5px -5px #67BCFF;
+    background-color: #2096FF;
+}
+.relevant-button.blue{
+    background-color: #4CADFF;
+}
+.top-relevant-button.blue{
+    background-color: #67BCFF;
+}
+
+
+
+
