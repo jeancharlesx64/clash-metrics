@@ -1,0 +1,148 @@
+.about-container{
+    width: 80%;
+    height: 500px;
+    background-color: rgb(255, 255, 255);
+    margin: 50px auto 0 auto;
+}
+.inner-about{
+    height: 400px;
+    width: 100%;
+    display: flex;
+    margin-top: 25px;
+    gap: 40px;
+
+}
+.inner-about .left{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 100%;
+    position: relative;
+}
+.inner-about .left .img-wrapper{
+    height: 400px;
+    width: 400px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.inner-about .left .img-wrapper::before {
+    content: ''; /* Criando um pseudo-elemento antes da imagem */
+    position: absolute; /* Posicionando este elemento sobre a imagem */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(270deg, rgba(255, 0, 0, 0.445), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 255, 0.281));
+    border-radius: 50%;
+}
+.inner-about .left .img-wrapper img{
+    height: 100%;
+
+
+}
+.inner-about .left .mini-img-wrapper{
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: blue;
+    border: 10px solid #FFF;
+    right: -30px;
+    bottom: -20px;
+    z-index: 10;
+}
+.inner-about .left .mini-img-wrapper img{
+    height: 100%;
+}
+.inner-about .right{
+    width: calc(100% - 400px);
+    height: 100%;
+}
+.inner-about .right h1{
+    font-size: 50px;
+    line-height: 55px;
+    margin-top: 10px;
+    font-family: 'cr', sans-serif;
+    
+}
+.inner-about .right span{
+    font-size: 20px;
+    font-weight: 800;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    background-image: linear-gradient(270deg, rgb(238, 59, 59), rgb(71, 71, 233));
+    -webkit-background-clip: text; 
+    background-clip: text;
+    color: transparent;
+}
+.inner-about .right  p{
+    font-size: 18px;
+    margin-top: 5px;
+    font-family: 'Freeman', sans-serif;   
+}
+.inner-about .right .icon-container{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    margin-top: 10px;
+}
+.inner-about .right .icon-container .inner-left{
+    width: 50%;
+    height: 100%;
+    display: flex;
+}
+.inner-about .right .icon-container .inner-left .icon-wrapper{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.inner-about .right .icon-container .inner-left .icon-wrapper img{
+    height: 102%;
+}
+.inner-about .right .icon-container .inner-left .text-wrapper h2{
+    font-family: 'cr', sans-serif;
+    font-size: 16px;
+    margin-top: 10px;
+    color: #0f8f1a;
+}
+.inner-about .right .icon-container .inner-left .text-wrapper p{
+    font-size: 17px;
+    line-height: 18px;
+    font-weight: 600;
+    font-family: 'Freeman';
+}
+
+.inner-about .right .icon-container .inner-right{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    gap: 5px;
+}
+.inner-about .right .icon-container .inner-right .icon-wrapper{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.inner-about .right .icon-container .inner-right .icon-wrapper img{
+    height: 100%;
+}
+.inner-about .right .icon-container .inner-right .text-wrapper h2{
+    font-family: 'cr', sans-serif;
+    font-size: 16px;
+    margin-top: 10px;
+    color: #ff9e30;
+}
+.inner-about .right .icon-container .inner-right .text-wrapper p{
+    font-family: 'Freeman';
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 18px;
+}
