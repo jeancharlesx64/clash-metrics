@@ -115,7 +115,7 @@
     color: #0f8f1a;
 }
 .inner-about .right .icon-container .inner-left .text-wrapper p{
-    font-size: 17px;
+    font-size: 15px;
     line-height: 17px;
     font-family: 'Montserrat';
     font-weight: 500;
@@ -143,7 +143,56 @@
 }
 .inner-about .right .icon-container .inner-right .text-wrapper p{
     font-family: 'Montserrat';
-    font-size: 17px;
+    font-size: 15px;
     line-height: 17px;
     font-weight: 500;
+}
+@media (max-width: 1300px) {
+    .inner-about .right .icon-container{
+        margin: 0;
+    }
+    .inner-about .right > p{
+        font-size: 12px;
+    }
+    .inner-about .right .icon-container .inner-right .text-wrapper p{
+        font-size: 10px;
+    }
+    .inner-about .right .icon-container .inner-left .text-wrapper p{
+        font-size: 10px;
+    }
+    .inner-about .right .icon-container .inner-right .icon-wrapper img{
+        height: 70%;
+    }
+    .inner-about .right .icon-container .inner-left .icon-wrapper img{
+        height: 70%;
+    }
+}
+@media (max-width: 970px) {
+    .inner-about{
+        flex-wrap: wrap-reverse;
+        height: auto;
+        align-items: center;
+    }
+    .inner-about .left{
+        width: 100%;
+        height: 100%;
+    }
+    
+    .inner-about .right{
+        width: 100%;
+        height: 100%;
+    }
+    .inner-about .left .img-wrapper{
+        width: 400px;
+        height: 400px;
+    }
+    .inner-about .left .img-wrapper::before {
+        width: 400px;
+        height: 400px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .about-container{
+        height: 900px;
+    }
 }
