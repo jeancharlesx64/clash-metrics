@@ -3,6 +3,8 @@
 const path = require('path'); // 
 const cors = require('cors');
 require('dotenv').config()  // requisitando o acesso á variáveis de ambiente
+const session = require('express-session'); // utilizando os módulos de sessões 
+
 
 // ========= EXPRESS SETUP ==============
 const express = require('express'); // requisitando o acesso ao framework express
@@ -22,10 +24,20 @@ app.set('views', path.join(__dirname, 'src', 'views'));// Define o diretório on
 app.use(cors()); // permitindo requisições HTTP -> CROSS ORIGIN RESOURCES SHARING
 // =====================================
 
-// ======= DEFINIÇÃO DE ROTAS ==========
-var indexRouter = require("./src/routes");
+// ======== DEFINIÇÃO DE SESSÃO ========
+app.use(session({
+    secret: 'sptech', // chave """"""""""""""""""secreta""""""""""""""""""" pra evitar cross scripting
+    resave: false,
+    saveUninitialized: true
+}));
+// =====================================
 
-app.use("/", indexRouter);
+// ======= DEFINIÇÃO DE ROTAS ==========
+var indexRouter = require("./src/routes/index");
+var dashboardRouter = require("./src/routes/dashboard");
+
+app.use('/', indexRouter);
+app.use('/dashboard', dashboardRouter);
 // =====================================
 
 // ========= ABRINDO SERVIDOR ==========
@@ -42,3 +54,7 @@ try{
     console.log(`\x1b[31mErro ao inicializar o servidor:\x1b[0m\n${e}`) 
 }
 // ====================================
+
+const database = require('./src/configs/database/connection');
+
+database.execute('select * from usuario');

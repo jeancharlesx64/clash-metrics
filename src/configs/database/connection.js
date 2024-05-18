@@ -18,7 +18,7 @@ function execute(sqlCommand){
         
         // se ambiente de desenvolvimento (usar o localhost, MySQL)
         return new Promise(function (resolve, reject) {
-            var connection = mysql.createConnection(mySqlConfig); // faz uma instancia com as credenciais definida
+            var connection = mysql.createConnection(mysqlConfig); // faz uma instancia com as credenciais definida
             connection.connect(); // abre a conexão
             connection.query(sqlCommand, function (error, result) { // executa uma query com a instrução no "sql comand"
                 connection.end(); // finaliza a conexão
