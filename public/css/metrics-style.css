@@ -1,9 +1,9 @@
 .metrics-container{
     width: 100%;
-    height: 500px;
-    background-color: rgb(207, 207, 207);
+    height: 800px;
+    background-color: rgb(34, 33, 36);
     margin: 0 auto;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 .inner-metrics{
     width: 90%;
@@ -12,18 +12,115 @@
     position: relative;
 
 }
+.inner-metrics > h1{
+    font-family: 'cr', Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-top: 5px;
+    color: #FFF;
+}
 .inner-metrics .img-left, .inner-metrics .img-right{
     position: absolute;
 }
 .inner-metrics .img-left{
-    left: 0;
-    bottom: -150px;
+    left: -100px;
+    bottom: 0px;
     height: 400px;
     filter: drop-shadow(0px 0px 10px rgba(0, 132, 255, 0.884));
 }
 .inner-metrics .img-right{
-    right: 0;
-    bottom: -150px;
+    right: -100px;
+    bottom: 0px;
     height: 400px;
     filter: drop-shadow(0px 0px 10px rgba(255, 0, 0, 0.733));
+}
+.metrics-card{
+    margin-top: 10px;
+    height: 480px;
+    width: 100%;
+    background-color: #FFF;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.metrics-card .metrics-left{
+    width: 50%;
+    height: 480px;
+}
+.metrics-left > h1{
+    font-size: 25px;
+    text-align: center;
+    font-family: 'cr', Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+}
+.metrics-left > p{
+    font-family: 'manrope';
+    text-align: justify;
+    width: 90%;
+    margin: 10px auto 0 auto;
+    line-height: 17px;
+    font-weight: 500;
+}
+.metrics-left > .img-wrapper{
+    height: 250px;
+    width: 90%;
+    margin: 10px auto 0 auto;
+    background-color: rgb(228, 228, 228);
+}
+.line{
+    width: 1px;
+    height: 450px;
+    background-color: rgba(0, 0, 0, 0.384);
+    border-radius: 50%;
+}
+.metrics-card .metrics-right{
+    width: 50%;
+    height: 480px;
+}
+.metrics-right > h1{
+    font-size: 25px;
+    text-align: center;
+    font-family: 'cr', Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+}
+.metrics-right > p{
+    font-family: 'manrope';
+    text-align: justify;
+    width: 90%;
+    margin: 10px auto 0 auto;
+    line-height: 17px;
+    font-weight: 500;
+}
+.metrics-right > .img-wrapper{
+    height: 250px;
+    width: 90%;
+    margin: 10px auto 0 auto;
+    background-color: rgb(228, 228, 228);
+}
+@media (max-width: 751px){
+    .metrics-container{
+        height: 1450px;
+    }
+    .line{
+        width: 90%;
+        height: 1px;
+    }
+    .metrics-card{
+        height: 1060px;
+    }
+    .metrics-card{
+        flex-direction: column;
+    }
+    .metrics-left > .img-wrapper{
+        background-color: rgb(228, 228, 228);
+    }
+    .metrics-left{
+        width: 90% !important;
+    }
+    .metrics-right > .img-wrapper{
+        background-color: rgb(228, 228, 228);
+    }
+    .metrics-right{
+        width: 90% !important;
+    }
 }
