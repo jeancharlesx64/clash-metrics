@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clash Metrics | Login</title>
     <link rel="stylesheet" href="./css/global-style.css">
-    <link rel="stylesheet" href="./css/login-style.css">
+    <link rel="stylesheet" href="./css/register-style.css">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Freeman&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poetsen+One&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="./js/toggle-bar-mobile.js" defer></script>
     <script src="./js/smooth-scroll.js" defer></script>
@@ -72,32 +72,43 @@
         <section class="home">
             <div class="inner-home">
                 <div class="card-login">
-                    <h1>Login</h1>
+                    <h1>Registrar</h1>
                     <form action="/login" method="POST" id="form_login">
-                        <div class="col">
-
+                        <div class="row">
+                            <div class="col">
+                                <label>Usuário:</label>
+                                <input name="usuario" type="text" id="usuario_input">
+                            </div>
+                            <div class="col">
                                 <label>Email:</label>
-                                <input name="email" type="text" id="email_input">
+                                <input name="email" type="email" id="email_input">
+                            </div>
                         </div>
-                        <div class="col">
+                        <div class="row">
+                            <div class="col">
                                 <label>Senha:</label>
                                 <input name="senha" type="password" id="senha_input">
+                            </div>
+                            <div class="col">
+                                <label>Gamertag:</label>
+                                <input name="gamertag" type="text" id="gamertag_input">
+                            </div>
                         </div>
                         <div class="row">
                             <a href="/login" class="btn">
-                                <button class="button-wrapper green">
-                                    <div class="inner-button green">
-                                        <div class="relevant-button green">
-                                            <div class="top-relevant-button green">
+                                <button class="button-wrapper yellow">
+                                    <div class="inner-button yellow">
+                                        <div class="relevant-button yellow">
+                                            <div class="top-relevant-button yellow">
                                                 <div class="shine-ball-button"></div>
                                             </div>
-                                            <span class="text-button">Entrar</span>
+                                            <span class="text-button">Cadastrar</span>
                                         </div>
                                     </div>
                                 </button>
                             </a>
                         </div>
-                        <p>Não possui uma conta? <a href="#"> Cadastre-se aqui!</a></p>
+                        <p>Já possui uma conta? <a href="/login"> Entre aqui!</a></p>
                     </form>
                 </div>
             </div>

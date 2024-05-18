@@ -47,9 +47,6 @@
     flex-direction: column;
     align-items: center;
 }
-.card-found > h1  {
-    
-}
 .card-found > img{
     height: 100px;
     margin-top: 10px;
