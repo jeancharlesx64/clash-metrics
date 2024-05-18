@@ -1,0 +1,88 @@
+.foundation-container{
+    height: auto;
+    padding-bottom: 50px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}
+.inner-foundation{
+    width: 80%;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.inner-foundation > h1{
+    font-family: 'cr', Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    text-align: center;
+}
+.inner-foundation > h3{
+    font-size: 20px;
+    font-weight: 800;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    background-image: linear-gradient(270deg, rgb(238, 59, 59), rgb(71, 71, 233));
+    -webkit-background-clip: text; 
+    background-clip: text;
+    text-align: center;
+    color: transparent;
+}
+.cards-wrapper{
+    width: 90%;
+    margin-top: 20px;
+    height: 300px;
+    display: flex;
+    gap: 15px;
+}
+.card-found{
+    height: 250px;
+    width: 33%;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.274);
+    border-radius: 8px;
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.178);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card-found > h1  {
+    
+}
+.card-found > img{
+    height: 100px;
+    margin-top: 10px;
+}
+.card-found:nth-child(3) > img{
+    margin-top: 20px;
+    height: 90px;
+}
+.card-found > h4{
+    text-align: center;
+    font-family: 'cr', Arial, Helvetica, sans-serif;
+    margin-top: 5px;
+}
+.card-found > p{
+    font-family: 'freeman';
+    text-align: center;
+    width: 80%;
+    line-height: 15px;
+    margin-top: 10px;
+    font-weight: 300;
+}
+@media (max-width: 1080px){
+    .cards-wrapper{
+        padding-bottom: 20px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .card-found {
+        width: 80%;
+    }
+    .cards-wrapper{
+        flex-direction: column;
+    }
+}
