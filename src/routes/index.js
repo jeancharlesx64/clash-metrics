@@ -12,18 +12,22 @@ router.get('/', function(req, res) {
 router.get('/login', function(req,res){
     if (!req.session.authenticated) {
 
-        let errorMessage = '';
-        let hasError = false;
+        let errorMessageLogin = '';
+        let hasErrorLogin = false;
 
-        if(req.session.hasError){
-            errorMessage = req.session.errorMessage;
-            hasError = req.session.hasError;
-            console.log(errorMessage);
+        if(req.session.hasErrorLogin){
+            errorMessageLogin = req.session.errorMessageLogin;
+            hasErrorLogin = req.session.hasErrorLogin;
+
+            delete req.session.hasErrorLogin;
+            delete req.session.errorMessageLogin;
+
+            console.log(errorMessageLogin);
         }
 
         res.render('login', { 
-            hasError: hasError,
-            errorMessage: errorMessage
+            hasErrorLogin: hasErrorLogin,
+            errorMessageLogin: errorMessageLogin
          });
 
     }else{
@@ -33,13 +37,40 @@ router.get('/login', function(req,res){
 
 router.post('/login', function(req,res){
     // A solicitação é do tipo POST, então você pode continuar com o processamento
-    userController.login(req,res);
+    userController.authLogin(req,res);
 });
 
 
 
 router.get('/register', function(req,res){
-    let hasError = false
-    res.render('register', { hasError: hasError});
+    if (!req.session.authenticated) {
+        
+        let errorMessageRegister = '';
+        let hasErrorRegister = false;
+
+        if(req.session.hasErrorRegister){
+            errorMessageRegister = req.session.errorMessageRegister;
+            hasErrorRegister = req.session.hasErrorRegister;
+
+            delete req.session.hasErrorRegister;
+            delete req.session.errorMessageRegister;
+            
+            console.log(errorMessageRegister);
+        }
+
+        
+
+        res.render('register', {
+             hasErrorRegister: hasErrorRegister,
+             errorMessageRegister
+        });
+    }else{
+        res.redirect('/dashboard');
+    }
+
+})
+
+router.post('/register', function(req,res){
+    userController.validateRegister(req,res);
 })
 module.exports = router;

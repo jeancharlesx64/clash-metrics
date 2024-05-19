@@ -16,6 +16,8 @@ router.get('/', function(req, res) {
     }else{
         req.session.hasError = true;
         req.session.errorMessage = 'Faça login antes de acessar a dashboard!'
+
+        
         res.redirect('/login');
     }
 

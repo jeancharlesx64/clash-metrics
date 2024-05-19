@@ -6,11 +6,26 @@
     <title>Clash Metrics | Login</title>
     <link rel="stylesheet" href="./css/global-style.css">
     <link rel="stylesheet" href="./css/register-style.css">
+    <link rel="stylesheet" href="./css/modal-register-erro.css">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Freeman&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poetsen+One&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="./js/toggle-bar-mobile.js" defer></script>
     <script src="./js/smooth-scroll.js" defer></script>
+    <script src="./js/modal-error-remove.js" defer></script>
 </head>
 <body>
+    <% if (hasErrorRegister) { %>
+        <div id="modalErro" class="modal">
+            <div class="modal-content" id="modalContent">
+                <div class="header-modal-erro">
+                    <img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/box-important--v1.png"
+                        alt="box-important--v1" />
+                </div>
+                <div class="modal-erros" id="modal_erros">
+                   <p style="text-align: center; color: red;"> <%= errorMessageRegister %> </p>
+                </div>
+            </div>
+        </div>
+    <% } %>
     <main class="main" id="home">
         <header class="header">
             <div class="inner-header">
@@ -73,7 +88,7 @@
             <div class="inner-home">
                 <div class="card-login">
                     <h1>Registrar</h1>
-                    <form action="/login" method="POST" id="form_login">
+                    <form action="/register" method="POST" id="form_login">
                         <div class="row">
                             <div class="col">
                                 <label>Usuário:</label>
@@ -95,8 +110,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <a href="/login" class="btn">
-                                <button class="button-wrapper yellow">
+                            <div class="btn">
+                                <button type="submit" id="submit_button" class="button-wrapper yellow">
                                     <div class="inner-button yellow">
                                         <div class="relevant-button yellow">
                                             <div class="top-relevant-button yellow">
@@ -106,7 +121,7 @@
                                         </div>
                                     </div>
                                 </button>
-                            </a>
+                            </div>
                         </div>
                         <p>Já possui uma conta? <a href="/login"> Entre aqui!</a></p>
                     </form>

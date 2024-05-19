@@ -13,7 +13,7 @@
     <script src="./js/modal-error-remove.js" defer></script>
 </head>
 <body>
-    <% if (hasError) { %>
+    <% if (hasErrorLogin) { %>
         <div id="modalErro" class="modal">
             <div class="modal-content" id="modalContent">
                 <div class="header-modal-erro">
@@ -21,7 +21,7 @@
                         alt="box-important--v1" />
                 </div>
                 <div class="modal-erros" id="modal_erros">
-                   <p style="text-align: center; color: red;"> <%= errorMessage %> </p>
+                   <p style="text-align: center; color: red;"> <%= errorMessageLogin %> </p>
                 </div>
             </div>
         </div>

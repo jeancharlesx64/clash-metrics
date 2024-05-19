@@ -1,6 +1,6 @@
 var database = require('../configs/database/connection');
 
-function autenticarLogin(email, senha) {
+function login(email, senha) {
     console.log("User Model accessed > function autenticarLogin");
 
     var sqlCommand = `
@@ -35,5 +35,5 @@ function autenticarLogin(email, senha) {
 }
 
 module.exports = {
-    autenticarLogin,
+    login,
 };
