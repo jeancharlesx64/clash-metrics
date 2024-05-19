@@ -4,9 +4,9 @@ require('dotenv').config()
 
 function authLogin(req,res){
     var email = req.body.email;
-    var senha = req.body.senha;
+    var password = req.body.password;
     
-    userModel.login(email,senha).then((resultadoQuery)=>{
+    userModel.login(email,password).then((resultadoQuery)=>{
             console.log(resultadoQuery.success);
             if(resultadoQuery.success){
                 req.session.authenticated = true
@@ -31,9 +31,9 @@ function authLogin(req,res){
 }
 
 async function validateRegister(req, res) {
-    const usuario = req.body.usuario;
+    const username = req.body.username;
     const email = req.body.email;
-    const senha = req.body.senha;
+    const password = req.body.password;
     const gamertag = req.body.gamertag;
 
     console.log('Cheguei aqui');
@@ -41,7 +41,20 @@ async function validateRegister(req, res) {
     const gamertagValida = await validateGamertag(gamertag);
 
     if (gamertagValida) {
-        console.log('CALMA RPZD')
+        userModel.register(username, email, password, gamertag).then(function(result){
+            console.log(result.success);
+    
+            // verificamos se o success é TRUE, se for true, então 
+            if(result.success){
+                req.session.hasRegistered = true
+                res.redirect('/login')
+            }else{ // senão
+                req.session.hasRegistered = false
+                console.log('Algum erro ocorreu ao cadastrar teste')
+                res.redirect('/register')
+            }
+    
+        })
     } else {
         req.session.hasErrorRegister = true;
         req.session.errorMessageRegister = 'Gamertag não encontrada. Tente novamente!'

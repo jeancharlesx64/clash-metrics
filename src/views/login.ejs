@@ -13,6 +13,10 @@
     <script src="./js/modal-error-remove.js" defer></script>
 </head>
 <body>
+    <% if (hasRegistered) { %>
+        <h1>REGISTRADO COM SUCESSO!</h1>
+    <% } %>
+
     <% if (hasErrorLogin) { %>
         <div id="modalErro" class="modal">
             <div class="modal-content" id="modalContent">
@@ -96,7 +100,7 @@
                         </div>
                         <div class="col">
                                 <label>Senha:</label>
-                                <input name="senha" type="password" id="senha_input">
+                                <input name="password" type="password" id="senha_input">
                         </div>
                         <div class="row">
                             <a href="/login" class="btn">

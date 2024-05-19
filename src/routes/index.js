@@ -15,6 +15,12 @@ router.get('/login', function(req,res){
         let errorMessageLogin = '';
         let hasErrorLogin = false;
 
+        let hasRegistered = false;
+
+        if(req.sessionStore.hasRegistered){
+            hasRegistered = req.session.hasRegistered;
+        }
+
         if(req.session.hasErrorLogin){
             errorMessageLogin = req.session.errorMessageLogin;
             hasErrorLogin = req.session.hasErrorLogin;
@@ -27,7 +33,8 @@ router.get('/login', function(req,res){
 
         res.render('login', { 
             hasErrorLogin: hasErrorLogin,
-            errorMessageLogin: errorMessageLogin
+            errorMessageLogin: errorMessageLogin,
+            hasRegistered: hasRegistered
          });
 
     }else{

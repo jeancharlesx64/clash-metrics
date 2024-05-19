@@ -1,12 +1,12 @@
 var database = require('../configs/database/connection');
 
-function login(email, senha) {
-    console.log("User Model accessed > function autenticarLogin");
+function login(email, password) {
+    console.log("UserModel acessado > função:login");
 
     var sqlCommand = `
-        SELECT idUsuario, usuario, email FROM usuario WHERE email = "${email}" AND senha = "${senha}";
+        SELECT idUsuario, usuario, email FROM usuario WHERE email = "${email}" AND senha = "${password}";
     `;
-    console.log("Running SQL command: \n" + sqlCommand);
+    console.log("Executando a instrução SQL: \n" + sqlCommand);
 
     return database.execute(sqlCommand).then(resultadoQuery => {
     
@@ -34,6 +34,31 @@ function login(email, senha) {
     });;
 }
 
+function register(username, email, password, gamertag){
+    var sqlCommand = `
+        INSERT INTO usuario VALUE
+            (DEFAULT, "${username}", "${email}", "${password}", "${gamertag}", NOW());
+    `;
+
+    console.log("Executando a instrução SQL: \n" + sqlCommand);
+    return database.execute(sqlCommand).then(() => { 
+        return { 
+            success: true,
+            message: 'Cadastrado com sucesso!' 
+        
+        };
+    })
+    .catch(error => {
+        console.error('Erro ao cadastrar:', error);
+        return { 
+            success: false,
+            message: 'Ocorreu um erro durante o cadastro, verifique a intrução SQL' 
+        
+        };
+    });;
+}
+
 module.exports = {
     login,
+    register
 };
