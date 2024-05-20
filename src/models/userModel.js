@@ -58,7 +58,38 @@ function register(username, email, password, gamertag){
     });;
 }
 
+
+function getEmail(email) {
+    console.log("UserModel acessado > função:login");
+
+    var sqlCommand = `
+        SELECT idUsuario FROM usuario WHERE email = "${email}";
+    `;
+    console.log("Executando a instrução SQL: \n" + sqlCommand);
+
+    return database.execute(sqlCommand).then(resultadoQuery => {
+        if (resultadoQuery && resultadoQuery.length > 0) {
+            // Se houver pelo menos um resultado
+            return {
+                 success: true, 
+                 isThereEmail: true
+            };
+        } else {
+            return {
+                success: true, 
+                isThereEmail: false
+           };
+        }
+    })
+    .catch(error => {
+        // Se ocorrer um erro durante a execução da consulta SQL, capture e manipule-o aqui
+        console.error('Erro ao autenticar login:', error);
+        return { success: false};
+    });;
+}
+
 module.exports = {
     login,
-    register
+    register,
+    getEmail
 };

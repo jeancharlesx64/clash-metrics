@@ -54,14 +54,14 @@
                         </li>
                         <li class="nav-items">
                           <!-- button -->
-                            <a href="/login" class="nav-link btn">
+                            <a href="/register" class="nav-link btn">
                                 <div class="button-wrapper yellow">
                                     <div class="inner-button yellow">
                                         <div class="relevant-button yellow">
                                             <div class="top-relevant-button yellow">
                                                 <div class="shine-ball-button"></div>
                                             </div>
-                                            <span class="text-button">Login</span>
+                                            <span class="text-button" id="register-btn-text">Cadastrar</span>
                                         </div>
                                     </div>
                                 </div>
@@ -94,13 +94,12 @@
                     <h1>Login</h1>
                     <form action="/login" method="POST" id="form_login">
                         <div class="col">
-
-                                <label>Email:</label>
-                                <input name="email" type="text" id="email_input">
+                            <label>Email:</label>
+                            <input name="email" type="text" id="email_input" required>
                         </div>
-                        <div class="col">
-                                <label>Senha:</label>
-                                <input name="password" type="password" id="senha_input">
+                    <div class="col">
+                            <label>Senha:</label>
+                            <input name="password" type="password" id="senha_input" required>
                         </div>
                         <div class="row">
                             <a href="/login" class="btn">

@@ -38,9 +38,10 @@ async function validateRegister(req, res) {
 
     console.log('Cheguei aqui');
 
-    const gamertagValida = await validateGamertag(gamertag);
+    const isGamertagValidated = await validateGamertag(gamertag);
+    const isEmailValidated = await validateEmail(email);
 
-    if (gamertagValida) {
+    if (isGamertagValidated && isEmailValidated) {
         userModel.register(username, email, password, gamertag).then(function(result){
             console.log(result.success);
     
@@ -58,6 +59,10 @@ async function validateRegister(req, res) {
     } else {
         req.session.hasErrorRegister = true;
         req.session.errorMessageRegister = 'Gamertag não encontrada. Tente novamente!'
+
+        if(!isEmailValidated){
+            req.session.errorMessageRegister = 'Email já registrado. Tente outro!'
+        }
         res.redirect('/register');
     }
 }
@@ -82,6 +87,19 @@ async function validateGamertag(gamertag) {
     }
 }
 
+async function validateEmail(email){
+    const resultadoQuery = await userModel.getEmail(email);
+    console.log(resultadoQuery.success);
+    if(resultadoQuery.success){
+        if(resultadoQuery.isThereEmail){
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        return false;
+    }
+}
 module.exports = {
     authLogin,
     validateGamertag,
