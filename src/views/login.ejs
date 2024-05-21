@@ -11,10 +11,21 @@
     <script src="./js/toggle-bar-mobile.js" defer></script>
     <script src="./js/smooth-scroll.js" defer></script>
     <script src="./js/modal-error-remove.js" defer></script>
+    <script src="./js/modal-registered-remove.js" defer></script>
 </head>
 <body>
     <% if (hasRegistered) { %>
-        <h1>REGISTRADO COM SUCESSO!</h1>
+        <div id="modalRegistered" class="modal">
+            <div class="modal-content" id="modalContent">
+                <div class="header-modal-correto">
+                    <img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/box-important--v1.png"
+                        alt="box-important--v1" />
+                </div>
+                <div class="modal-erros" id="modal_erros">
+                   <p style="text-align: center; color: #40be4b;"> Cadastrado com sucesso </p>
+                </div>
+            </div>
+        </div>
     <% } %>
 
     <% if (hasErrorLogin) { %>

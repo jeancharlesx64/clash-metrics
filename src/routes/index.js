@@ -17,8 +17,12 @@ router.get('/login', function(req,res){
 
         let hasRegistered = false;
 
-        if(req.sessionStore.hasRegistered){
+        if(req.session.hasRegistered){
             hasRegistered = req.session.hasRegistered;
+
+            
+            delete req.session.hasRegistered;
+
         }
 
         if(req.session.hasErrorLogin){

@@ -5,8 +5,9 @@ if (errorMessageElement) {
     setTimeout(() => {
         errorMessageElement.style.display = 'none';
     }, 3000); 
-}
 
-errorMessageElement.addEventListener('click', ()=>{
-    errorMessageElement.style.display = 'none';
-})
+    errorMessageElement.addEventListener('click', ()=>{
+        errorMessageElement.style.display = 'none';
+    })
+    
+}
