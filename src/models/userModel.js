@@ -99,8 +99,8 @@ async function getAllAPIData(gamertag){
                 'Authorization': 'Bearer ' + apiKey
             }
         });
-        console.log(response.data);
-        return response.data;
+
+        return response;
     } catch (error) {
         if (error.response && error.response.status === 404) {
             return false;

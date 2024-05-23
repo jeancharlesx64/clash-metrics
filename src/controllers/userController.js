@@ -21,11 +21,20 @@ function authLogin(req,res){
 
                 console.log(req.session.user.session_userGamertag);
                 userModel.getAllAPIData(req.session.user.session_userGamertag).then((resultResponse)=>{
-                    if(resultResponse.success){
-                        console.log(resultResponse);                        
+                    if(resultResponse.status == 200){
+
+                        const playerAPI = resultResponse.data;
+                        
+                        // DADOS DA API AQUI!!!*******
+                        // https://developer.clashroyale.com/#/documentation
+                        req.session.playerAPI = {
+                            session_playerTag: playerAPI.tag,
+                            session_playerName: playerAPI.name
+                        }
+
+                        res.redirect('/dashboard')
                     }
                 });
-                res.redirect('/dashboard')
             }else{
                 req.session.authenticated = false
                 req.session.hasErrorLogin = true;
@@ -44,7 +53,6 @@ async function validateRegister(req, res) {
     const password = req.body.password;
     const gamertag = req.body.gamertag;
 
-    console.log('Cheguei aqui');
 
     const isGamertagValidated = await validateGamertag(gamertag);
     const isEmailValidated = await validateEmail(email);

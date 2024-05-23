@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoySense | Dashboard</title>
+    <title>Clash Metrics | Dashboard</title>
     <!-- chart js lib -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
@@ -37,7 +37,7 @@
                 <img src="./assets/img/profile.jpg" />
             </div>
             <span>Jogador</span>
-            <h4><%= userId %></h4>
+            <h4><%= userName %></h4>
             <script>
             </script>
         </div>
@@ -89,8 +89,8 @@
 
         <header class="header-dashboard">
             <div class="left-header">
-                <h1>Sayken</h1>
-                <span>#9PPYCYC28</span>
+                <h1><%= playerName %></h1>
+                <span><%= playerTag %></span>
                 <div class="detail-wrapper">
                     <div class="upper-detail">
                         <img src="./assets/icon/trophy.png"> <span><span>6220 PB</span> <b>Arena 17</b></span>
