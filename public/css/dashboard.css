@@ -76,3 +76,27 @@
     width: 120px;
     background-color: gray;
 }
+
+.level-container{
+    font-size: 12px;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    width: 96%;
+    background-color: #FFF;
+    height: 80px;
+    margin: 20px auto 20px auto;
+    border: 1px solid rgba(0, 0, 0, 0.185);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.185);
+    padding: 20px;
+}
+.level-wrapper{
+    width: 100%;
+    margin-top: 10px;
+    height: 10px;
+    background-color: gray;
+}
+.level-wrapper .level{
+    width: 67%;
+    height: 100%;
+    background-color: #EC15F7;
+}
