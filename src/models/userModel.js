@@ -1,10 +1,11 @@
 var database = require('../configs/database/connection');
+const axios = require('axios');
 
 function login(email, password) {
     console.log("UserModel acessado > função:login");
 
     var sqlCommand = `
-        SELECT idUsuario, usuario, email FROM usuario WHERE email = "${email}" AND senha = "${password}";
+        SELECT idUsuario, usuario, email, gamertag FROM usuario WHERE email = "${email}" AND senha = "${password}";
     `;
     console.log("Executando a instrução SQL: \n" + sqlCommand);
 
@@ -17,7 +18,8 @@ function login(email, password) {
                  success: true, 
                  bd_userId: resultadoQuery[0].idUsuario,
                  bd_userName: resultadoQuery[0].usuario,
-                 bd_userEmail: resultadoQuery[0].email
+                 bd_userEmail: resultadoQuery[0].email,
+                 bd_userGamertag: resultadoQuery[0].gamertag
             };
         } else {
             // Se o resultado estiver vazio, significa que o login falhou
@@ -60,7 +62,7 @@ function register(username, email, password, gamertag){
 
 
 function getEmail(email) {
-    console.log("UserModel acessado > função:login");
+    console.log("UserModel acessado > função:getEnaail");
 
     var sqlCommand = `
         SELECT idUsuario FROM usuario WHERE email = "${email}";
@@ -83,13 +85,35 @@ function getEmail(email) {
     })
     .catch(error => {
         // Se ocorrer um erro durante a execução da consulta SQL, capture e manipule-o aqui
-        console.error('Erro ao autenticar login:', error);
+        console.error('Erro ao autenticar o email no login:', error);
         return { success: false};
     });;
+}
+
+async function getAllAPIData(gamertag){
+    try {
+        const apiKey = process.env.API_KEY;
+        const apiUrl = 'https://proxy.royaleapi.dev/v1/players/%23' + gamertag.replace('#', '');
+        const response = await axios.get(apiUrl, {
+            headers: {
+                'Authorization': 'Bearer ' + apiKey
+            }
+        });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        if (error.response && error.response.status === 404) {
+            return false;
+        } else {
+            console.log('Ocorreu algum erro ao capturar os dados do Jogador: ' + error);
+            return false;
+        }
+    }
 }
 
 module.exports = {
     login,
     register,
-    getEmail
+    getEmail,
+    getAllAPIData
 };

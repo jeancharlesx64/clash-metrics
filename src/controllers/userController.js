@@ -6,17 +6,25 @@ function authLogin(req,res){
     var email = req.body.email;
     var password = req.body.password;
     
-    userModel.login(email,password).then((resultadoQuery)=>{
-            console.log(resultadoQuery.success);
-            if(resultadoQuery.success){
+    userModel.login(email,password).then((resultQuery)=>{
+            console.log(resultQuery.success);
+            if(resultQuery.success){
                 req.session.authenticated = true
 
                 // criando na sessão um "json", com os dados que foi pego do banco 
                 req.session.user = {
-                    session_userId: resultadoQuery.bd_userId,
-                    session_userName: resultadoQuery.bd_userName,
-                    session_userEmail: resultadoQuery.bd_userEmail
+                    session_userId: resultQuery.bd_userId,
+                    session_userName: resultQuery.bd_userName,
+                    session_userEmail: resultQuery.bd_userEmail,
+                    session_userGamertag: resultQuery.bd_userGamertag
                 };
+
+                console.log(req.session.user.session_userGamertag);
+                userModel.getAllAPIData(req.session.user.session_userGamertag).then((resultResponse)=>{
+                    if(resultResponse.success){
+                        console.log(resultResponse);                        
+                    }
+                });
                 res.redirect('/dashboard')
             }else{
                 req.session.authenticated = false

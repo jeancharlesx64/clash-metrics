@@ -38,6 +38,9 @@
 .upper-detail > span > span{
     color: blue;
 }
+.upper-detail > span > img{
+    height: 20px;
+}
 .upper-detail img{
     height: 20px;
 }
@@ -93,10 +96,30 @@
     width: 100%;
     margin-top: 10px;
     height: 10px;
-    background-color: gray;
+    background-color: rgba(128, 128, 128, 0.397);
 }
 .level-wrapper .level{
     width: 67%;
     height: 100%;
-    background-color: #EC15F7;
+    background-color: #a816d4;
+}
+.level-container .detail-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 20px;
+}
+.elixir-img{
+    height: 20px;
+}
+
+.analytic-body{
+    width: 96%;
+    background-color: #FFF;
+    height: 400px;
+    margin: 20px auto 20px auto;
+    border: 1px solid rgba(0, 0, 0, 0.185);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.185);
+    padding: 20px;
 }

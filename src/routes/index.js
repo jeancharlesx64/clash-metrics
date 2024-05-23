@@ -39,6 +39,7 @@ router.get('/login', function(req,res){
             hasErrorLogin: hasErrorLogin,
             errorMessageLogin: errorMessageLogin,
             hasRegistered: hasRegistered
+    
          });
 
     }else{

@@ -14,9 +14,9 @@ router.get('/', function(req, res) {
         });
 
     }else{
-        req.session.hasError = true;
-        req.session.errorMessage = 'Faça login antes de acessar a dashboard!'
-
+        req.session.hasErrorLogin = true;
+        req.session.errorMessageLogin = 'Faça login antes de acessar a Dashboard!';
+        console.log(req.session.errorMessageLogin)
         
         res.redirect('/login');
     }
