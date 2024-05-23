@@ -1,11 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
+<link rel="shortcut icon" href="./icon/organizacao-_1_.ico">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>SoySense | Dashboard</title>
+    <!-- chart js lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- estático js script -->
+    <script src="./js/side-bar.js" defer></script>
+    <script src="./js/graficos-simulativo-dashboard.js" defer></script>
+
+
+
+
+    <!-- styles -->
+    <link rel="stylesheet" href="./css/global-style.css">
+    <link rel="stylesheet" href="./css/side-bar.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/header-main.css">
 </head>
+
 <body>
-    <h1>Bem vindo a dashboard!</h1>
+    <aside class="side-bar">
+        <div class="logo-wrapper">
+            <img src="./assets/icon/full-logo.png" />
+        </div>
+        <div class="profile-wrapper">
+            <div class="profile-picture">
+                <img src="./assets/img/profile.jpg" />
+            </div>
+            <span>Sayken</span>
+            <h4>jeancharlesx64</h4>
+        </div>
+        <div class="line-side-bar"></div>
+        <nav class="nav-side-bar">
+            <ul class="accordion-menu">
+                <li class="nav-normal-item dash-on">
+                    <a href="./dashboard.html">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/dashboard-layout.png"
+                            alt="dashboard-layout" />
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-normal-item">
+                    <a href="./dashboard.html">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/dashboard-layout.png"
+                            alt="dashboard-layout" />
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-normal-item">
+                    <a href="">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/fine-print.png" alt="fine-print" />
+                        Benchmarking
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="footer-aside">
+            <div class="logout-container">
+                <a href="#">
+                    <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/f13939/logout-rounded.png"
+                        alt="logout-rounded" />
+                    Sair
+                </a>
+            </div>
+        </div>
+    </aside>
+    <main class="main-dashboard">
+
+        <header class="header-dashboard">
+            <!-- <div class="inner-header">
+                <h1>Dashboard</h1>
+                <a href="#">/dashboard</a>
+            </div> -->
+        </header>
+
+    </main>
 </body>
+
+
 </html>

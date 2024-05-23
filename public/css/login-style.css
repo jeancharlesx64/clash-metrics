@@ -33,7 +33,7 @@
     left: 0;
     background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/23618/rip.svg) bottom;
     background-color: transparent;
-    background-size: 200%;
+    background-size: 140%;
     transform: scaleY(-1);
     z-index: 2;
   }

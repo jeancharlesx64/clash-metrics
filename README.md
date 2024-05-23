@@ -2,6 +2,6 @@
 
 ## Gamertags to test
 
-#RYQPCJGYY
-#9PPYCYC28
-#
+#RYQPCJGYY - Ashi
+#9PPYCYC28 - Jean 
+#99LLGL9VJ - Samuel

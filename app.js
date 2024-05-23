@@ -56,4 +56,4 @@ try{
 // ====================================
 
 const database = require('./src/configs/database/connection');
-database.execute('select * from usuario');
+database.execute('select * from usuario limit 1');

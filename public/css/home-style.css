@@ -24,9 +24,9 @@
     height: 57px;
     width: 100%;
     left: 0;
-    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/23618/rip.svg) bottom;
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/23618/rip.svg) bottom !important;
     background-color: transparent;
-    background-size: 200%;
+    background-size: 150% !important;
     transform: scaleY(-1);
     z-index: 2;
   }
