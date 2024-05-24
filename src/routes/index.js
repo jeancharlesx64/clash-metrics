@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-var userController = require("../controllers/userController");
+const userController = require("../controllers/userController");
 
 // Rota raiz
 router.get('/', function(req, res) {

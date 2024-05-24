@@ -10,31 +10,18 @@ function authLogin(req,res){
             console.log(resultQuery.success);
             if(resultQuery.success){
                 req.session.authenticated = true
+                req.session.userGamertag = resultQuery.bd_userGamertag;
 
                 // criando na sessão um "json", com os dados que foi pego do banco 
                 req.session.user = {
                     session_userId: resultQuery.bd_userId,
                     session_userName: resultQuery.bd_userName,
                     session_userEmail: resultQuery.bd_userEmail,
-                    session_userGamertag: resultQuery.bd_userGamertag
                 };
 
-                console.log(req.session.user.session_userGamertag);
-                userModel.getAllAPIData(req.session.user.session_userGamertag).then((resultResponse)=>{
-                    if(resultResponse.status == 200){
+                console.log(req.session.userGamertag);
 
-                        const playerAPI = resultResponse.data;
-                        
-                        // DADOS DA API AQUI!!!*******
-                        // https://developer.clashroyale.com/#/documentation
-                        req.session.playerAPI = {
-                            session_playerTag: playerAPI.tag,
-                            session_playerName: playerAPI.name
-                        }
-
-                        res.redirect('/dashboard')
-                    }
-                });
+                res.redirect('/dashboard');
             }else{
                 req.session.authenticated = false
                 req.session.hasErrorLogin = true;
@@ -116,8 +103,20 @@ async function validateEmail(email){
         return false;
     }
 }
+
+async function getPlayerDataAPI(gamertag) {
+    const apiKey = process.env.API_KEY;
+    const apiUrl = 'https://proxy.royaleapi.dev/v1/players/%23' + gamertag.replace('#', '');
+    const response = await axios.get(apiUrl, {
+        headers: {
+            'Authorization': 'Bearer ' + apiKey
+        }
+    });
+    return response.data;
+}
 module.exports = {
     authLogin,
     validateGamertag,
     validateRegister,
+    getPlayerDataAPI
 }

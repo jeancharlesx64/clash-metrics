@@ -1,22 +1,25 @@
 const express = require('express');
 const router = express.Router();
+const userController = require("../controllers/userController");
 
 // Rota raiz
-router.get('/', function(req, res) {    
+router.get('/', async function(req, res) {    
     if (req.session.authenticated) {
 
         // dados do usuário vindo do banco
         const user = req.session.user;
 
+        console.log(req.session.userGamertag)
         // dados do jogador vindo da API
-        const player = req.session.playerAPI;
-    
+        const player = await userController.getPlayerDataAPI(req.session.userGamertag);
+
+        console.log(player.tag);
         res.render('dashboard', {
             userId: user.session_userId,
             userName: user.session_userName,
             userEmail: user.session_userEmail,
-            playerTag: player.session_playerTag,
-            playerName: player.session_playerName
+            playerTag: player.tag,
+            playerName: player.name
         });
 
     }else{

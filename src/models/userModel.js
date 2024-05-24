@@ -90,30 +90,8 @@ function getEmail(email) {
     });;
 }
 
-async function getAllAPIData(gamertag){
-    try {
-        const apiKey = process.env.API_KEY;
-        const apiUrl = 'https://proxy.royaleapi.dev/v1/players/%23' + gamertag.replace('#', '');
-        const response = await axios.get(apiUrl, {
-            headers: {
-                'Authorization': 'Bearer ' + apiKey
-            }
-        });
-
-        return response;
-    } catch (error) {
-        if (error.response && error.response.status === 404) {
-            return false;
-        } else {
-            console.log('Ocorreu algum erro ao capturar os dados do Jogador: ' + error);
-            return false;
-        }
-    }
-}
-
 module.exports = {
     login,
     register,
-    getEmail,
-    getAllAPIData
+    getEmail
 };
