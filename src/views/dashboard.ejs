@@ -96,8 +96,17 @@
 
         <header class="header-dashboard">
             <div class="left-header">
+                <% 
+                    let yearsPlayed = 0
+                    for (let i = 0; i < player.badges.length; i++) {
+                        if (player.badges[i].name === 'YearsPlayed') {
+                            yearsPlayed = player.badges[i].level;
+                            break;
+                        }
+                    }
+                %>
                 <h1><%= player.name %></h1>
-                <span><%= player.tag %></span>
+                <span><%= player.tag %> | <span style="color: #D855DC; font-weight: bolder;"><%= yearsPlayed %> anos de experiência</span></span>
                 <div class="detail-wrapper">
                     <div class="upper-detail">
                         <img src="./assets/icon/trophy.png"> <span><span><%= player.trophies %> Troféus</span> | <b><%= player.arena.name %></b></span>
@@ -105,7 +114,6 @@
                     <div class="below-detail">
                         <div class="img-wrapper">
                             <img src="https://royaleapi.github.io/cr-api-assets/badges/<%= player.clanBadge%>.png" alt="Clan Badge">
-
                         </div>
                         <div class="text-wrapper">
                             <p class="clan-span"><b><%= player.clan.name %></b></p> 
@@ -175,7 +183,7 @@
                                   <th>Batalhas & Diversões</th>
                                   <th></th>
                                 </tr>
-                                <tr>
+                                <tr style="background-color: #e2e2e2;">
                                   <td>Total de batalhas</td>
                                   <td><span style="font-weight: bolder;"><%= player.battleCount %></span></td>
                                 </tr>
@@ -183,12 +191,12 @@
                                     <td>Vitórias</td>
                                     <td><span style="font-weight: bolder; color: green;"><%= player.wins %></span></td>
                                 </tr>
-                                <tr>
+                                <tr style="background-color: #e2e2e2;">
                                     <td>Derrotas</td>
                                     <td><span style="font-weight: bolder; color: red;"><%= player.losses %></span></td>
                                 </tr>
                                 <tr>
-                                    <td>Eventos</td>
+                                    <td>Modo Diversão</td>
                                     <td><span style="font-weight: bolder; color: rgb(0, 119, 255);"><%= player.battleCount - (player.wins+player.losses) %></span></td>
                                 </tr>
                             </table>
@@ -206,31 +214,61 @@
                                 <canvas id="graficoDeBarras"></canvas>
                             </div>
                         </div>
+                        <% 
+                        let totalCards = 0;
+                        let commonCount = 0
+                        let rareCount = 0
+                        let epicCount = 0
+                        let legendaryCount = 0
+                        let championCount = 0
+                        let notFoundCount = 0
+                        
+                        // Iterar sobre a lista de cartas
+                        for (let i = 0; i < player.cards.length; i++) {
+                            if(player.cards[i].rarity === 'common'){
+                                commonCount++
+                            }else if(player.cards[i].rarity === 'rare'){
+                                rareCount++
+                            }else if(player.cards[i].rarity === 'epic'){
+                                epicCount++
+                            }else if(player.cards[i].rarity === 'legendary'){
+                                legendaryCount++
+                            }else if(player.cards[i].rarity == 'champion'){
+                                championCount++
+                            }
+                            totalCards++;
+                        }
+                        notFoundCount = 111 - totalCards;
+                        %>
                         <div class="txt-wrapper">
                             <table>
                                 <tr>
                                   <th>Progresso de Cartas</th>
                                   <th><%= player.battleCount %></th>
                                 </tr>
-                                <tr>
-                                  <td>Cartas encontradas</td>
-                                  <td><span style="font-weight: bolder;"></span></td>
+                                <tr style="background-color: #e2e2e2;">
+                                  <td >Cartas encontradas</td>
+                                  <td><span style="font-weight: bolder;"><%= totalCards %>/111</span></td>
                                 </tr>
                                 <tr>
                                     <td>Comuns</td>
-                                    <td><span style="font-weight: bolder; color: green;">3000</span></td>
+                                    <td><span style="font-weight: bolder; color: #70C0DC;"><%= commonCount %></span></td>
                                 </tr>
-                                <tr>
+                                <tr style="background-color: #e2e2e2;">
                                     <td>Raras</td>
-                                    <td><span style="font-weight: bolder; color: green;">3000</span></td>
+                                    <td><span style="font-weight: bolder; color: #E4A432;"><%= rareCount %></span></td>
                                 </tr>
                                 <tr>
                                     <td>Épicas</td>
-                                    <td><span style="font-weight: bolder; color: green;">3000</span></td>
+                                    <td><span style="font-weight: bolder; color: #D855DC;"><%= epicCount %></span></td>
+                                </tr>
+                                <tr style="background-color: #e2e2e2;">
+                                    <td>Raras</td>
+                                    <td><span style="font-weight: bolder; color: #8b8b8b;"><%= legendaryCount %></span></td>
                                 </tr>
                                 <tr>
-                                    <td>Raras</td>
-                                    <td><span style="font-weight: bolder; color: green;">3000</span></td>
+                                    <td >Campeões</td>
+                                    <td><span style="font-weight: bolder; color: #ffa600;"><%= championCount %></span></td>
                                 </tr>
                             </table>
                         </div>
@@ -243,10 +281,10 @@
             new Chart(ctx, {
                 type: 'radar',
                 data: {
-                    labels: ['Vitórias', 'Derrotas', 'Empates'],
+                    labels: ['Vitórias', 'Derrotas', 'Modo Diversão'],
                     datasets: [{
-                        labels: ['Vitórias', 'Derrotas', 'Empates'],
-                        data: [1420, 1290, 2800],
+                        labels: ['Vitórias', 'Derrotas', 'Modo Diversão'],
+                        data: [<%= player.wins %>, <%= player.losses %>, <%= player.battleCount - (player.wins+player.losses) %>],
                         borderWidth: 2,
                         borderColor: '#0b4cff',
                         backgroundColor: '#0b4cff4b',
@@ -293,25 +331,27 @@
                 const ctx2 = document.getElementById('graficoDeBarras').getContext('2d');
 
                 const data2 = {
-                labels: ['Comuns', 'Raras', 'Épicas', 'Lendárias', 'Campeões'],
+                labels: ['Comuns', 'Raras', 'Épicas', 'Lendárias', 'Campeões', 'N/A'],
                 label: {
                     display: false
                 },
                 datasets: [{
-                    data: [65, 59, 80, 81, 56], 
+                    data: [<%= commonCount %>, <%= rareCount %>, <%= epicCount %>, <%= legendaryCount %>, <%= championCount %>, <%= notFoundCount %>], 
                     backgroundColor: [ // Array de cores para cada barra
                     '#70C0DC', // Cor para a primeira barra
                     '#E4A432', // Cor para a segunda barra
                     '#D855DC', // Cor para a terceira barra
-                    '#D7D8F0', // Cor para a quarta barra
-                    '#FFF500' // Cor para a quinta barra
+                    '#A0A0A0', // Cor para a quarta barra
+                    '#ffa600', // Cor para a quinta barra
+                    '#D7D8F0'
                     ],
                     borderColor: [ // Bordas das barras (opcional)
                     '#70C0DC',
                     '#E4A432',
                     '#D855DC',
-                    '#D7D8F0',
-                    '#FFF500'
+                    '#A0A0A0',
+                    '#ffa600',
+                    '#D7D8F0'
                     ],
                     borderWidth: 1 ,
         

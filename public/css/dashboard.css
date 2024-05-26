@@ -280,7 +280,7 @@ th, td {
     height: 190px;
     display: flex;
     flex-direction: row-reverse;
-    margin-top: 10px;
+    margin-top: 0px;
 }
 .bottom-body .bar-chart-wrapper{
     width: 50%;
@@ -288,6 +288,7 @@ th, td {
     padding: 10px 0 0 10px;
 }
 .bottom-body .bar-chart-wrapper .graph{
+    margin-top: 40px;
     height: 100%;
 }
 .bottom-body .txt-wrapper{
@@ -298,5 +299,6 @@ th, td {
     height: 1px;
     width: 90%;
     background-color: rgba(10, 10, 10, 0.219);
-    margin: 20px auto 0 auto;
+    margin: 10px auto 0 auto;
+    display: none;
 }
