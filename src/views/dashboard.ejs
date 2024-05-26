@@ -15,9 +15,14 @@
 
     <!-- estático js script -->
     <script src="./js/side-bar.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Freeman&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poetsen+One&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="./js/graficos-simulativo-dashboard.js" defer></script>
 
-
+    <!-- chart js lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
     <!-- styles -->
@@ -77,11 +82,13 @@
         </nav>
         <div class="footer-aside">
             <div class="logout-container">
-                <a href="#">
-                    <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/f13939/logout-rounded.png"
+                <form action="/dashboard/logout" method="get">
+                    <button type="submit" class="btn-logout">
+                        <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/f13939/logout-rounded.png"
                         alt="logout-rounded" />
-                    Logout
-                </a>
+                        Sair
+                    </button>
+                </form>
             </div>
         </div>
     </aside>
@@ -89,42 +96,251 @@
 
         <header class="header-dashboard">
             <div class="left-header">
-                <h1><%= playerName %></h1>
-                <span><%= playerTag %></span>
+                <h1><%= player.name %></h1>
+                <span><%= player.tag %></span>
                 <div class="detail-wrapper">
                     <div class="upper-detail">
-                        <img src="./assets/icon/trophy.png"> <span><span>6220 PB</span> <b>Arena 17</b></span>
+                        <img src="./assets/icon/trophy.png"> <span><span><%= player.trophies %> Troféus</span> | <b><%= player.arena.name %></b></span>
                     </div>
                     <div class="below-detail">
                         <div class="img-wrapper">
+                            <img src="https://royaleapi.github.io/cr-api-assets/badges/<%= player.clanBadge%>.png" alt="Clan Badge">
 
                         </div>
-                        <span class="clan-span">Clan #Q2L09290</span>
-                        <div class="line"></div>
-                        <div class="action-clan">
-                            Member
+                        <div class="text-wrapper">
+                            <p class="clan-span"><b><%= player.clan.name %></b></p> 
+                            <p><%= player.clan.tag %></p>
                         </div>
                     </div>
                 </div>
             </div>
-            <right class="right-header">
+            <div class="right-header">
                 <div class="img-wrapper">
-                    
+                    <%
+                        let leagueNumber = 1; // Define leagueNumber como 0 por padrão
+
+                        // Verifica se player.currentPathOfLegendSeasonResult não é nulo ou indefinido e se leagueNumber não é nulo ou indefinido
+                        if (player.currentPathOfLegendSeasonResult && player.currentPathOfLegendSeasonResult.leagueNumber !== null && player.currentPathOfLegendSeasonResult.leagueNumber !== undefined) {
+                            leagueNumber = player.currentPathOfLegendSeasonResult.leagueNumber;
+                        }
+                    %>
+                    <img src="https://cdn.royaleapi.com/static/img/arenas-fs8/128x128/league<%= leagueNumber %>-fs8.png?t=87d3ea2fc?2"/>
                 </div>
-            </right>
+            </div>
         </header>
-        <section class="level-container">
-            <div class="detail-wrapper">
-                <span>Level 9220/10000 XP - 92.2%</span>
-                <img class="elixir-img" src="./assets/icon/elixir.png"/>
-            </div>
-            <div class="level-wrapper">
-                <div class="level"></div>
-            </div>
-        </section>
         <section class="analytic-body">
 
+            <div class="left-data">
+                <h2>Deck atual</h2>
+                <div class="deck-wrapper">
+                    <% let elixirSumCost = 0%>
+                    <% for (let i = 0; i < player.currentDeck.length ; i++) { %>
+                        <% if(i % 4 === 0){ %>
+                            <div class="row-card">
+                        <% } %>
+                        
+                        <div class="card">
+                            <img src="<%= player.currentDeck[i].iconUrls.medium %>">
+                        </div>
+    
+                        <% if(i % 4 === 3){ %>
+                            </div>
+                        <% } %>
+                        
+                        <% elixirSumCost += player.currentDeck[i].elixirCost %>
+                        
+                    <% } %>
+                    <div class="elixir">
+                        <img src="./assets/icon/elixir.png"></p>
+                        <p><%= (elixirSumCost / 8).toFixed(1) %></p>
+                    </div>
+                </div>
+                <div class="left-data-detail">
+                    <div class="img-wrapper">
+                        <img src="<%= player.currentDeckSupportCards[0].iconUrls.medium %>">
+                    </div>
+                    <div class="text-wrapper">
+                        <p>Suporte: <span><%= player.currentDeckSupportCards[0].name %></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="line-data"></div>
+            <div class="right-data">
+                <h2>Estatística do Jogador</h2>
+                <div class="body">
+                    <div class="inner-body">
+                        <div class="left-inner-body">
+                            <table>
+                                <tr>
+                                  <th>Batalhas & Diversões</th>
+                                  <th></th>
+                                </tr>
+                                <tr>
+                                  <td>Total de batalhas</td>
+                                  <td><span style="font-weight: bolder;"><%= player.battleCount %></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Vitórias</td>
+                                    <td><span style="font-weight: bolder; color: green;"><%= player.wins %></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Derrotas</td>
+                                    <td><span style="font-weight: bolder; color: red;"><%= player.losses %></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Eventos</td>
+                                    <td><span style="font-weight: bolder; color: rgb(0, 119, 255);"><%= player.battleCount - (player.wins+player.losses) %></span></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="right-inner-body">
+                            <div>
+                                <canvas id="radarChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-left"></div>
+                    <div class="bottom-body">
+                        <div class="bar-chart-wrapper">
+                            <div class="graph">
+                                <canvas id="graficoDeBarras"></canvas>
+                            </div>
+                        </div>
+                        <div class="txt-wrapper">
+                            <table>
+                                <tr>
+                                  <th>Progresso de Cartas</th>
+                                  <th><%= player.battleCount %></th>
+                                </tr>
+                                <tr>
+                                  <td>Cartas encontradas</td>
+                                  <td><span style="font-weight: bolder;"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Comuns</td>
+                                    <td><span style="font-weight: bolder; color: green;">3000</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Raras</td>
+                                    <td><span style="font-weight: bolder; color: green;">3000</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Épicas</td>
+                                    <td><span style="font-weight: bolder; color: green;">3000</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Raras</td>
+                                    <td><span style="font-weight: bolder; color: green;">3000</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
+        <script>
+            const ctx = document.getElementById('radarChart');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Vitórias', 'Derrotas', 'Empates'],
+                    datasets: [{
+                        labels: ['Vitórias', 'Derrotas', 'Empates'],
+                        data: [1420, 1290, 2800],
+                        borderWidth: 2,
+                        borderColor: '#0b4cff',
+                        backgroundColor: '#0b4cff4b',
+                        pointBackgroundColor: '#0b4cff',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(255, 99, 132, 1)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            min: 0,
+                            ticks: {
+                                display: false // remove os números das linhas radiais
+                            },
+                            maxTicksLimit: 5, // limita o número máximo de ticks
+                            stepSize: 20 // ajusta o espaçamento entre as linhas radiais
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: false,
+                            position: 'top',
+                            text: 'Avaliação de batalhas'
+                        },
+                        legend: {
+                            display: false,
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltips: {
+                            enabled: true
+                        }
+                    }
+                }
+            });                      
+            
+            
+                const ctx2 = document.getElementById('graficoDeBarras').getContext('2d');
+
+                const data2 = {
+                labels: ['Comuns', 'Raras', 'Épicas', 'Lendárias', 'Campeões'],
+                label: {
+                    display: false
+                },
+                datasets: [{
+                    data: [65, 59, 80, 81, 56], 
+                    backgroundColor: [ // Array de cores para cada barra
+                    '#70C0DC', // Cor para a primeira barra
+                    '#E4A432', // Cor para a segunda barra
+                    '#D855DC', // Cor para a terceira barra
+                    '#D7D8F0', // Cor para a quarta barra
+                    '#FFF500' // Cor para a quinta barra
+                    ],
+                    borderColor: [ // Bordas das barras (opcional)
+                    '#70C0DC',
+                    '#E4A432',
+                    '#D855DC',
+                    '#D7D8F0',
+                    '#FFF500'
+                    ],
+                    borderWidth: 1 ,
+        
+                }]
+                };
+
+                const options2 = {
+                    scales: {
+                        x: {
+                        display: 'auto', // Exibe os rótulos das barras como indicadores
+                        beginAtZero: true
+                        },
+                        y: {
+                        beginAtZero: true 
+                        }
+                    },
+                    plugins: {
+                    legend: {
+                        display: false
+                    }
+                    }
+                };
+
+                const graficoDeBarras = new Chart(ctx2, {
+                type: 'bar', 
+                data: data2, 
+                options: options2
+                });
+          </script>
     </main>
 </body>
 

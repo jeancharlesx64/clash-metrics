@@ -6,20 +6,18 @@ const userController = require("../controllers/userController");
 router.get('/', async function(req, res) {    
     if (req.session.authenticated) {
 
-        // dados do usuário vindo do banco
         const user = req.session.user;
 
-        console.log(req.session.userGamertag)
-        // dados do jogador vindo da API
         const player = await userController.getPlayerDataAPI(req.session.userGamertag);
+        
+        player.clanBadge =  await userController.getClanBadge(player.clan.badgeId);
 
-        console.log(player.tag);
         res.render('dashboard', {
             userId: user.session_userId,
             userName: user.session_userName,
             userEmail: user.session_userEmail,
-            playerTag: player.tag,
-            playerName: player.name
+            player: player,
+            currentDeck: player.currentDeck
         });
 
     }else{
@@ -31,5 +29,17 @@ router.get('/', async function(req, res) {
     }
 
 });
+
+router.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log(err);
+            return res.redirect('/dashboard'); // Redirecione de volta para o dashboard em caso de erro
+        }
+        res.clearCookie('connect.sid'); // Limpar o cookie de sessão
+        res.redirect('/login'); // Redirecionar para a tela de login
+    });
+});
+
 
 module.exports = router;

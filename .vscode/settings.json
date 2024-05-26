@@ -5,7 +5,7 @@
     "workbench.editor.labelFormat": "short",
     "explorer.compactFolders": false,
     "editor.semanticHighlighting.enabled": false,
-    "breadcrumbs.enabled": false,
+    "breadcrumbs.enabled": true,
     "workbench.statusBar.visible": false,
     "apc.header": {
         "height": 36

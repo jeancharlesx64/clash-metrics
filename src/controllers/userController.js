@@ -114,9 +114,33 @@ async function getPlayerDataAPI(gamertag) {
     });
     return response.data;
 }
+
+// Função para construir a URL completa da imagem do badge
+async function getBadgeImageUrl(badgeId) {
+    const badgeImageUrlBase = 'https://royaleapi.github.io/cr-api-assets/badges/';
+    const imageName = await getBadgeImageName(badgeId);
+    
+}
+
+// Função para obter o nome da imagem do badge pelo badgeId
+async function getClanBadge(badgeId) {
+    const badgeJsonUrl = 'https://royaleapi.github.io/cr-api-data/json/alliance_badges.json';
+    const response = await axios.get(badgeJsonUrl);
+    const badgesData = response.data;
+
+    for (let i = 0; i < badgesData.length; i++) {
+        if (badgesData[i].id === badgeId) {
+            return badgesData[i].name;
+        }
+    }
+    return null;
+}
+
 module.exports = {
     authLogin,
     validateGamertag,
     validateRegister,
-    getPlayerDataAPI
+    getPlayerDataAPI,
+    getClanBadge,
+    getBadgeImageUrl
 }

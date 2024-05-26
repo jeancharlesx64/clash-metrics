@@ -20,7 +20,7 @@ body{
     height: 100%;
     background-color: #1A578F;
     position: relative;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.74);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.315);
     position: relative;
     z-index: 2;
 }
@@ -172,4 +172,13 @@ body{
     display: flex;
     align-items: center;
     gap: 5px;
+}
+.btn-logout{
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    cursor: pointer;
+    color: #F73433;
 }
