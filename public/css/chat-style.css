@@ -1,0 +1,106 @@
+.main-dashboard{
+    height: 100vh;
+    width: calc(100% - 220px);
+    background-color: #3877c0;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+}
+.form-chat{
+    width: 100%; 
+    height: 80px;
+    background-color: #1a568f00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-wrapper{
+    border-radius: 8px;
+    width: calc(100% - 165px);
+    height: 50px;
+    background-color: #FFFF;
+    display: flex;
+    overflow: hidden;
+}
+.input-chat{
+    width: 100%;
+    height: 47px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    padding-left: 10px;
+    border-radius: 8px;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    border: 1px solid #3C95C1;
+    box-shadow: 0 0 5px #3C95C1;
+    font-weight: bolder;
+}
+.input-chat:focus{
+    outline: none;
+}
+
+button{
+    border: none;
+    background-color: #f5df18;
+    width: 100px;
+    color: #FFF;
+    cursor: pointer;
+}
+
+button:hover{
+    transform: scale(0.95);
+}
+.text-button > img{
+    filter: drop-shadow(-2px 3px 0 black);
+}
+.chat-container {
+    border: 2px solid #3C95C1;
+    border-radius: 7px;
+    width: 97%;
+    height: 85%; /* Defina uma altura máxima */
+    margin: 13px auto 0 auto;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Use 'auto' para mostrar a barra de rolagem apenas quando necessário */
+}
+
+
+.message-self{
+    height: auto;
+    padding: 10px;
+    width: 100%;
+    background-color: #3877c0;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    color: #FFF;
+    max-width: 250px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 14px;
+    margin-bottom: 15px;
+    border-radius: 10px 10px 0 10px;
+    align-self: flex-end;
+    word-wrap: break-word;
+}
+.message-other{
+    padding: 10px;
+    width: 100%;
+    background-color: #f1f1f1;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    color: #000000;
+    max-width: 250px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 14px;
+    margin-bottom: 15px;
+    border: 1px solid #1686c7d2;
+    border-radius: 10px 10px 10px 0px;
+    align-self: flex-start;
+    word-wrap: break-word;
+}
+.message-sender{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bolder;
+    color: rgb(22, 168, 212);
+}

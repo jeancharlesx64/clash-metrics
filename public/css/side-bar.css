@@ -2,19 +2,6 @@ body{
     display: flex;
     flex-direction: row;
 }
-::-webkit-scrollbar {
-    width: 5px; 
-}
-
-::-webkit-scrollbar-track {
-  background: #6f7580;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #2861db;
-  border: 1px solid #6f7580;
-  border-radius: 5px;
-}
 .side-bar{
     width: 220px;
     height: 100%;

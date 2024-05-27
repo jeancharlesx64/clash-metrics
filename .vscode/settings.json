@@ -20,5 +20,12 @@
     "window.commandCenter": false,
     "workbench.layoutControl.enabled": false,
     "editor.stickyScroll.enabled": false,
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "files.associations": {
+        "*.ejs": "html"
+    },
+    "emmet.includeLanguages": {
+        "ejs": "html",
+    },
+    "html.format.templating": true
 }

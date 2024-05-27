@@ -23,7 +23,7 @@
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
     <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <script src="./js/graphic-dashboard.js" defer></script>
 
     <!-- styles -->
     <link rel="stylesheet" href="./css/global-style.css">
@@ -50,7 +50,7 @@
         <nav class="nav-side-bar">
             <ul class="accordion-menu">
                 <li class="nav-normal-item dash-on">
-                    <a href="./dashboard.html">
+                    <a href="./dashboard">
                         <img width="17" height="17"
                             src="https://img.icons8.com/material-outlined/24/FFFFFF/dashboard-layout.png"
                             alt="dashboard-layout" />
@@ -58,14 +58,14 @@
                     </a>
                 </li>
                 <li class="nav-normal-item">
-                    <a href="./dashboard.html">
+                    <a href="./">
                         <img width="17" height="17" src="https://img.icons8.com/ios-filled/50/FFFFFF/sparkling--v1.png" 
                         alt="sparkling--v1"/>
                         Popular
                     </a>
                 </li>
                 <li class="nav-normal-item">
-                    <a href="">
+                    <a href="./chat">
                         <img width="17" height="17" src="https://img.icons8.com/ios-filled/50/FFFFFF/speech-bubble-with-dots.png"
                          alt="speech-bubble-with-dots"/>
                         Global Chat
@@ -214,6 +214,7 @@
                                 <canvas id="graficoDeBarras"></canvas>
                             </div>
                         </div>
+
                         <% 
                         let totalCards = 0;
                         let commonCount = 0
@@ -276,113 +277,17 @@
                 </div>
             </div>
         </section>
-        <script>
-            const ctx = document.getElementById('radarChart');
-            new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: ['Vitórias', 'Derrotas', 'Modo Diversão'],
-                    datasets: [{
-                        labels: ['Vitórias', 'Derrotas', 'Modo Diversão'],
-                        data: [<%= player.wins %>, <%= player.losses %>, <%= player.battleCount - (player.wins+player.losses) %>],
-                        borderWidth: 2,
-                        borderColor: '#0b4cff',
-                        backgroundColor: '#0b4cff4b',
-                        pointBackgroundColor: '#0b4cff',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(255, 99, 132, 1)'
-                    }]
-                },
-                options: {
-                    scales: {
-                        r: {
-                            min: 0,
-                            ticks: {
-                                display: false // remove os números das linhas radiais
-                            },
-                            maxTicksLimit: 5, // limita o número máximo de ticks
-                            stepSize: 20 // ajusta o espaçamento entre as linhas radiais
-                        }
-                    },
-                    plugins: {
-                        title: {
-                            display: false,
-                            position: 'top',
-                            text: 'Avaliação de batalhas'
-                        },
-                        legend: {
-                            display: false,
-                            position: 'bottom',
-                            labels: {
-                                font: {
-                                    size: 12
-                                }
-                            }
-                        },
-                        tooltips: {
-                            enabled: true
-                        }
-                    }
-                }
-            });                      
-            
-            
-                const ctx2 = document.getElementById('graficoDeBarras').getContext('2d');
+        <!-- Inputs escondidos -->
+        <input type="hidden" id="playerWins" value="<%= player.wins %>">
+        <input type="hidden" id="playerLosses" value="<%= player.losses %>">
+        <input type="hidden" id="playerFunMode" value="<%= player.battleCount - (player.wins + player.losses)%>">
 
-                const data2 = {
-                labels: ['Comuns', 'Raras', 'Épicas', 'Lendárias', 'Campeões', 'N/A'],
-                label: {
-                    display: false
-                },
-                datasets: [{
-                    data: [<%= commonCount %>, <%= rareCount %>, <%= epicCount %>, <%= legendaryCount %>, <%= championCount %>, <%= notFoundCount %>], 
-                    backgroundColor: [ // Array de cores para cada barra
-                    '#70C0DC', // Cor para a primeira barra
-                    '#E4A432', // Cor para a segunda barra
-                    '#D855DC', // Cor para a terceira barra
-                    '#A0A0A0', // Cor para a quarta barra
-                    '#ffa600', // Cor para a quinta barra
-                    '#D7D8F0'
-                    ],
-                    borderColor: [ // Bordas das barras (opcional)
-                    '#70C0DC',
-                    '#E4A432',
-                    '#D855DC',
-                    '#A0A0A0',
-                    '#ffa600',
-                    '#D7D8F0'
-                    ],
-                    borderWidth: 1 ,
-        
-                }]
-                };
-
-                const options2 = {
-                    scales: {
-                        x: {
-                        display: 'auto', // Exibe os rótulos das barras como indicadores
-                        beginAtZero: true
-                        },
-                        y: {
-                        beginAtZero: true 
-                        }
-                    },
-                    plugins: {
-                    legend: {
-                        display: false
-                    }
-                    }
-                };
-
-                const graficoDeBarras = new Chart(ctx2, {
-                type: 'bar', 
-                data: data2, 
-                options: options2
-                });
-          </script>
+        <input type="hidden" id="commonCount" value="<%= commonCount %>">
+        <input type="hidden" id="rareCount" value="<%= rareCount %>">
+        <input type="hidden" id="epicCount" value="<%= epicCount %>">
+        <input type="hidden" id="legendaryCount" value="<%= legendaryCount %>">
+        <input type="hidden" id="championCount" value="<%= championCount %>">
+        <input type="hidden" id="notFoundCount" value="<%= notFoundCount %>">
     </main>
 </body>
-
-
 </html>

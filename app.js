@@ -4,11 +4,12 @@ const path = require('path'); //
 const cors = require('cors');
 require('dotenv').config()  // requisitando o acesso á variáveis de ambiente
 const session = require('express-session'); // utilizando os módulos de sessões 
-
+const { WebSocketServer } = require('ws');
 
 // ========= EXPRESS SETUP ==============
 const express = require('express'); // requisitando o acesso ao framework express
 const app = express(); // utilizando o express
+
 // =====================================
 
 // ============ MIDDLEWARES =============
@@ -32,15 +33,41 @@ app.use(session({
 }));
 // =====================================
 
+// ====== DEFINIÇÃO DE WEBSOCKTET ======
+const wss = new WebSocketServer({
+    port: process.env.WS_PORT
+})
+
+// =====================================
+
 // ======= DEFINIÇÃO DE ROTAS ==========
 var indexRouter = require("./src/routes/index");
 var dashboardRouter = require("./src/routes/dashboard");
+var chatRouter = require('./src/routes/chat');
 
 app.use('/', indexRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/chat', chatRouter);
 // =====================================
 
-// ========= ABRINDO SERVIDOR ==========
+
+// ==== ABRINDO SERVIDOR WWEBSOCKET ====
+wss.on('connection',(ws)=>{
+    console.log('Cliente conectou no servidor websocket!')
+
+    ws.on('message', (message)=>{
+        console.log(message.toString());
+
+        wss.clients.forEach((client)=>{
+            client.send(message.toString());
+        })
+    })
+
+
+})
+// =====================================
+
+// ====== ABRINDO SERVIDOR HTTP ========
 const HOST = process.env.SV_HOST;
 const PORT = process.env.SV_PORT; 
 const ENVIROMENT = process.env.NODE_ENV; 
@@ -48,10 +75,10 @@ const ENVIROMENT = process.env.NODE_ENV;
 try{
     app.listen(PORT, ()=>{  
         console.log(`Preparando o ambiente de \x1b[33m${ENVIROMENT}\x1b[0m...`)
-        console.log(`\x1b[32mExecutando o servidor: http://${HOST}:${PORT} \x1b[0m`)
+        console.log(`\x1b[32mExecutando o servidor HTTP: http://${HOST}:${PORT} \x1b[0m`)
     })
 }catch(e){
-    console.log(`\x1b[31mErro ao inicializar o servidor:\x1b[0m\n${e}`) 
+    console.log(`\x1b[31mErro ao inicializar o servidor HTTP:\x1b[0m\n${e}`) 
 }
 // ====================================
 
