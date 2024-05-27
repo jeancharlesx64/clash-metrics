@@ -135,12 +135,21 @@ async function getClanBadge(badgeId) {
     }
     return null;
 }
+async function getNewTrophies(id, trophies){
+    if(id != null && trophies != null){
+        await userModel.updateTrophies(id, trophies);
+        return
+    }else{
+        return 
+    }
 
+}
 module.exports = {
     authLogin,
     validateGamertag,
     validateRegister,
     getPlayerDataAPI,
     getClanBadge,
-    getBadgeImageUrl
+    getBadgeImageUrl,
+    getNewTrophies
 }

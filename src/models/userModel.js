@@ -38,7 +38,7 @@ function login(email, password) {
 
 function register(username, email, password, gamertag){
     var sqlCommand = `
-        INSERT INTO usuario VALUE
+        INSERT INTO usuario(idUsuario, usuario, email, senha, gamertag, dataCriacao) VALUE
             (DEFAULT, "${username}", "${email}", "${password}", "${gamertag}", NOW());
     `;
 
@@ -89,9 +89,19 @@ function getEmail(email) {
         return { success: false};
     });;
 }
+function updateTrophies(id,trophies){
+    console.log("UserModel acessado > função:updateTrophies");
 
+    var sqlCommand = `
+        UPDATE usuario
+        SET trophies = ${trophies}
+        WHERE idUsuario = ${id}
+    `;
+    database.execute(sqlCommand);
+}
 module.exports = {
     login,
     register,
-    getEmail
+    getEmail,
+    updateTrophies
 };

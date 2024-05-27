@@ -8,8 +8,6 @@ router.get('/', async function(req,res){
         const user = req.session.user;
 
         const player = await userController.getPlayerDataAPI(req.session.userGamertag);
-        
-        player.clanBadge =  await userController.getClanBadge(player.clan.badgeId);
 
         res.render('chat', {
             userId: user.session_userId,

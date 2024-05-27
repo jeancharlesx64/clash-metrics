@@ -10,8 +10,27 @@ router.get('/', async function(req, res) {
 
         const player = await userController.getPlayerDataAPI(req.session.userGamertag);
         
-        player.clanBadge =  await userController.getClanBadge(player.clan.badgeId);
+        let imgName = '';
+        let imgUrl = '';
 
+        if(player.clan){
+           imgName =  await userController.getClanBadge(player.clan.badgeId);
+           imgUrl = `https://royaleapi.github.io/cr-api-assets/badges/${imgName}.png`     
+           player.clanName = player.clan.name;
+           player.clanTag = player.clan.tag  ;     
+        }else{
+            imgUrl = `https://cdn.royaleapi.com/static/img/badge/no_clan.png?t=0b21d1b4c`
+            player.clanName = 'Sem clã'
+            player.clanTag = '#XXXXXXXX'
+        }
+ 
+        player.badgeUrl = imgUrl;
+
+        // atualizando os troféus
+        let isTrophiesUpdated = userController.getNewTrophies(user.session_userId, player.trophies);
+        if(!isTrophiesUpdated){
+            console.log('erro ao atualizar a quantidade de troféus')
+        }
         res.render('dashboard', {
             userId: user.session_userId,
             userName: user.session_userName,
