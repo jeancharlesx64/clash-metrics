@@ -4,7 +4,29 @@ const txtName = document.querySelector('#user_name').textContent;
 
 const chatContainer = document.querySelector('.chat-container');
 function getRandomColor() {
-    return '#' + Math.floor(Math.random()*16777215).toString(16);
+    let colorList = [
+        "aqua",
+        "black",
+        "blue",
+        "fuchsia",
+        "gray",
+        "green",
+        "lime",
+        "maroon",
+        "navy",
+        "olive",
+        "orange",
+        "purple",
+        "red",
+        "silver",
+        "teal",
+        "white",
+        "yellow"
+    ];
+
+    let randomNumber = Math.floor(Math.random() * 17); // Gera um número aleatório entre 0 e 16
+
+    return colorList[randomNumber];
   }
 
 const user = {
