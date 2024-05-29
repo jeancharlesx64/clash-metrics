@@ -1,3 +1,13 @@
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+::-webkit-scrollbar-thumb {
+    background: #1a568f42;
+}
 .main-dashboard{
     height: 100%;
     width: calc(100% - 220px);
@@ -17,13 +27,35 @@
 .left-header{
     width: 60%;
     height: 100%;
-    background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .feed-wrapper{
     height: 100%;
     padding: 75px 15px 15px 15px;
     width: 60%;
     overflow-y: auto;
+}
+.search-wrapper{
+    height: 35px;
+    width: 95%;
+    background-color: rgb(226, 226, 226);
+    display: flex;
+}
+.search-wrapper > button{
+    padding-top: 3px;
+    height: 35px;
+    width: 35px;
+    background-color: transparent;
+    border: none;
+}
+
+.search-wrapper > input{
+    border: none;
+    background-color: transparent;
+    flex: 1;
+    height: 100%;
 }
 .post-creator{
     margin: 0 auto;
@@ -35,7 +67,7 @@
 }
 .post{
     margin-top: 10px;
-    height: 300px;
+    height: 400px;
     width: 100%;
     background-color: white;
 }
