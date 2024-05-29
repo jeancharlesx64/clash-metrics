@@ -44,10 +44,12 @@ const wss = new WebSocketServer({
 var indexRouter = require("./src/routes/index");
 var dashboardRouter = require("./src/routes/dashboard");
 var chatRouter = require('./src/routes/chat');
+var feedRouter = require('./src/routes/feed');
 
 app.use('/', indexRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/chat', chatRouter);
+app.use('/feed', feedRouter);
 // =====================================
 
 

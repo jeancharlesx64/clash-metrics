@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clash Metrics | Dashboard</title>
+    <title>Clash Metrics | Feed</title>
     <!-- chart js lib -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
@@ -28,7 +28,6 @@
     <!-- styles -->
     <link rel="stylesheet" href="/css/global-style.css">
     <link rel="stylesheet" href="/css/side-bar.css">
-    <link rel="stylesheet" href="/css/chat-style.css">
 </head>
 
 <body>
@@ -56,18 +55,18 @@
                         Perfil
                     </a>
                 </li>
-                <li class="nav-normal-item">
+                <li class="nav-normal-item dash-on">
                     <a href="/dashboard.html">
                         <img width="17" height="17" src="https://img.icons8.com/ios-filled/50/FFFFFF/sparkling--v1.png" 
                         alt="sparkling--v1"/>
                         Feed
                     </a>
                 </li>
-                <li class="nav-normal-item dash-on">
-                    <a href="">
+                <li class="nav-normal-item">
+                    <a href="/chat">
                         <img width="17" height="17" src="https://img.icons8.com/ios-filled/50/FFFFFF/speech-bubble-with-dots.png"
                          alt="speech-bubble-with-dots"/>
-                        Chat Global
+                        Global Chat
                     </a>
                 </li>
                 <li class="nav-normal-item">
@@ -92,24 +91,7 @@
         </div>
     </aside>
     <main class="main-dashboard">
-        <div class="chat-container">
-            <!-- mensagem -->
-        </div>
-        <div class="form-chat">
-            <div class="form-wrapper">
-                <input class="input-chat" id="message">
-            </div>
-            <button class="button-wrapper yellow" id="btn-send" type="button">
-                <div class="inner-button yellow">
-                    <div class="relevant-button yellow">
-                        <div class="top-relevant-button yellow">
-                            <div class="shine-ball-button"></div>
-                        </div>
-                        <span class="text-button">Entrar</span>
-                    </div>
-                </div>
-            </button>
-        </div>
+
     </main>
     
 </body>
