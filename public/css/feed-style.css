@@ -305,3 +305,8 @@
 .btn-create:hover{
     background-color: rgb(31, 136, 31);
 }
+.action-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
