@@ -16,6 +16,10 @@
     position: relative;
 }
 
+.inner-main{
+    width: 100%;
+    display: flex;
+}
 .feed-header{
     height: 70px;
     width: calc(100% - 220px);
@@ -23,25 +27,27 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.137);
     position: fixed;
     z-index: 3;
+    display: flex;
 }
 .left-header{
-    width: 60%;
+    width: 35%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .feed-wrapper{
-    height: 100%;
-    padding: 75px 15px 15px 15px;
-    width: 60%;
     overflow-y: auto;
+    max-height: 100vh;
+    padding: 75px 15px 15px 15px;
+    width: 35%;
 }
 .search-wrapper{
     height: 35px;
     width: 95%;
     background-color: rgb(226, 226, 226);
     display: flex;
+    border: 4px;
 }
 .search-wrapper > button{
     padding-top: 3px;
@@ -56,6 +62,10 @@
     background-color: transparent;
     flex: 1;
     height: 100%;
+    padding-left: 10px;
+}
+.search-wrapper > input:focus{
+    outline: none;
 }
 .post-creator{
     margin: 0 auto;
@@ -67,10 +77,231 @@
 }
 .post{
     margin-top: 10px;
-    height: 400px;
+    height: auto;
     width: 100%;
     background-color: white;
 }
+.user-info{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+}
+.profile-wrapper-post{
+    height: 37px;
+    width: 37px;
+    border-radius: 50%;
+    background-color: gray;
+    overflow: hidden;
+}
+.profile-wrapper-post img{
+    height: 100%;
+}
+.username-wrapper-post{
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+    font-family: 'Montserrat';
+}
+.username-wrapper-post span{
+    font-size: 12px;
+}
 .feed-creator{
     width: 40%;
+}
+.post-header{
+    width: 100%;
+    height: 50px;
+}
+.post-body{
+    height: auto;
+    width: 100%;
+}
+.post-body .img-wrapper{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    background-color: gray;
+}
+.post-body .img-wrapper img{
+    width:  100%;
+}
+.post-footer{
+    height: 100px;
+    width: 100%;
+}
+.post-footer .footer-line{
+    height: 1px;
+    margin: 0 auto;
+    background-color: rgba(128, 128, 128, 0.418);
+    width: 90%;
+}
+.upper-footer{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
+.bottom-footer{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.good-ava, .bad-ava{
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    height: 100%;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.right-header{
+    width: 65%;
+    height: 100%;
+}
+.profile-feed{
+    flex: 1;
+    background-color: rgb(255, 255, 255);
+    padding-top: 90px;
+    overflow-y: auto;
+}
+
+.upper-profile-feed{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.upper-profile-feed .img-wrapper{
+    width: 100px;
+    height: 100px;
+    background-color: rgba(128, 128, 128, 0.404);
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.089);
+}
+.upper-profile-feed .img-wrapper img{
+    height: 100%;
+}
+.upper-profile-feed .profile-wrapper{
+    position: relative;
+    height: 100px;
+    width: auto;
+}
+.upper-profile-feed  .edit-img{
+    height: 30px;
+    width: 30px;
+    background-color: #2b81f1;
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.upper-profile-feed  .edit-img img{
+    height: 70%;
+    width: 70%;
+}
+.bottom-profile-feed{
+    height: 60px;
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+.bottom-profile-feed h1{
+    font-weight: bolder;
+    font-size: 20px;
+}
+.bottom-profile-feed span{
+    font-size: 12px;
+}
+.bottom-profile-info{
+    display: flex;
+    margin-top: 10px;
+    gap: 20px;
+    
+}
+.bottom-profile-info .line{
+    width: 80%;
+    height: 1px;
+    background-color: gray;
+}
+.btn-edit{
+    height: 17px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+}
+.followers, .following{
+    width: 200px;
+    height: 50px;
+}
+.middle-profile-feed{
+    height: 220px;
+    width: 90%;
+    margin: 0 auto;
+}
+.middle-profile-feed span{
+    font-size: 12px;
+    font-family: 'Montserrat';
+}
+.posts{
+    height: 340px;
+    width: 100%;
+    display: flex;
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 1px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    background-color: rgba(128, 128, 128, 0.274);
+    border-radius: 5px;
+}
+.posts .post-wrapper{
+    height: 190px;
+    width: 90px;
+    background-color: blue;
+    transition: 0.3s all;
+    cursor: pointer;
+    filter: brightness(0.7);
+}
+.post-wrapper:hover{
+    transform: scale(1.1);
+    filter: brightness(1);
+}
+.posts .post-wrapper img{
+    height: 100%;
+}
+.btn-create{
+    margin: 10px auto;
+    display: block;
+    cursor: pointer;
+
+}
+.btn-create .text-button{
+    font-family: 'cr', Arial, Helvetica, sans-serif;
+}
+.btn-create:hover{
+    background-color: rgb(31, 136, 31);
 }
