@@ -16,7 +16,6 @@
     <!-- estático js script -->
     <script src="/js/side-bar.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Freeman&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poetsen+One&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script src="/js/graficos-simulativo-dashboard.js" defer></script>
 
     <!-- chart js lib -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
@@ -24,6 +23,7 @@
     <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/js/chat.js" defer></script>
+    <script src="/js/modal.js" defer></script>
 
     <!-- styles -->
     <link rel="stylesheet" href="/css/global-style.css">
@@ -160,7 +160,6 @@
                     <div class="post-body">
                         <div class="img-wrapper">
                             <img src="/assets/img/ss-teste2.jfif">
-    
                         </div>
                     </div>
                     <div class="post-footer">
@@ -188,7 +187,7 @@
                         <div class="img-wrapper">
                             <img src="/assets/img/profile.jpg">
                         </div>
-                        <button class="edit-img">
+                        <button class="edit-img edit-modal" >
                             <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/camera--v1.png" alt="camera--v1"/>
                         </button>
                     </div>
@@ -196,13 +195,13 @@
                 <div class="bottom-profile-feed">
                     <h1>
                         jeancharlesx64 
-                        <button class="btn-edit">
+                        <button class="btn-edit edit-modal">
                             <img width="19" height="19" src="https://img.icons8.com/ios-glyphs/30/pencil--v1.png" alt="pencil--v1"/>
                         </button>
                     </h1>
                     <span>
                         #XXXXXXXX 
-                        <button class="btn-edit">
+                        <button class="btn-edit edit-modal">
                             <img width="19" height="19" src="https://img.icons8.com/ios-glyphs/30/pencil--v1.png" alt="pencil--v1"/>
                         </button>
                     </span>
@@ -228,6 +227,62 @@
             </div>
         </div>
     </main>
+
+    <!-- Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Perfil</h2>
+            <form id="editProfileForm">
+                <label for="username">Nome de Usuário:</label><br>
+                <input type="text" id="username" name="username" value="jeancharlesx64"><br>
+                <label for="gamertag">Gamertag:</label><br>
+                <input type="gamertag" id="gamertag" name="gamertag" value="#XXXXXXXX"><br>
+                <label for="picture">Foto de perfil:</label><br>
+                <input type="file" id="picture" accept="image/*" onchange="previewImage()"><br>
+                <div class="img-preview" id="imgPreview" >
+
+                </div>
+                <button class="button-wrapper yellow" type="submit">
+                <div class="inner-button yellow">
+                    <div class="relevant-button yellow">
+                        <div class="top-relevant-button yellow">
+                            <div class="shine-ball-button"></div>
+                        </div>
+                        <span class="text-button">Salvar</span>
+                    </div>
+                </div>
+            </button>
+            </form>
+        </div>
+    </div>
+
+        <!-- Modal -->
+        <!-- <div id="createModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Criar post</h2>
+                <form id="editProfileForm">
+                    <label for="username">Nome de Usuário:</label><br>
+                    <input type="text" id="username" name="username" value="jeancharlesx64"><br>
+                    <label for="picture">Imagem do post:</label><br>
+                    <input type="file" id="picture" accept="image/*" onchange="previewImage()"><br>
+                    <div class="img-preview" id="imgPreview" >
+    
+                    </div>
+                    <button class="button-wrapper yellow" type="submit">
+                    <div class="inner-button yellow">
+                        <div class="relevant-button yellow">
+                            <div class="top-relevant-button yellow">
+                                <div class="shine-ball-button"></div>
+                            </div>
+                            <span class="text-button">Salvar</span>
+                        </div>
+                    </div>
+                </button>
+                </form>
+            </div>
+        </div> -->
     
 </body>
 </html>

@@ -188,7 +188,7 @@
     background-color: rgba(128, 128, 128, 0.404);
     border-radius: 50%;
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.089);
+    border: 1px solid rgba(58, 58, 58, 0.089);
 }
 .upper-profile-feed .img-wrapper img{
     height: 100%;
@@ -309,4 +309,83 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+
+
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    align-items: center;
+    justify-content: center;
+}
+.modal.active{
+    display: flex;
+}
+.modal-content {
+    background-color: #fefefe;
+    height: 530px;
+    width: 450px;
+    padding: 15px;
+    border-radius: 5px;
+}
+.modal-content h2{
+    margin-top: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-family: 'Montserrat';
+}
+#editProfileForm{
+    width: 100%;
+}
+#editProfileForm label{
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+#editProfileForm input{
+    margin-bottom: 5px;
+    height: 35px;
+    padding-left: 5px;
+    width: 100%;
+
+}
+#editProfileForm input:focus{
+    outline: none;
+}
+#editProfileForm .img-preview{
+    height: 200px;
+    width: 100%;
+    background-color: rgb(235, 235, 235);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#editProfileForm .img-preview img{
+    height: 100%;
+}
+#editProfileForm button{
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
