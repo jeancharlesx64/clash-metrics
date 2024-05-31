@@ -14,6 +14,7 @@ function login(email, password) {
         if (resultadoQuery && resultadoQuery.length > 0) {
             // Se houver pelo menos um resultado, significa que o login foi bem-sucedido
             // Após o login bem-sucedido
+                console.log(resultadoQuery)
             return {
                  success: true, 
                  bd_userId: resultadoQuery[0].idUsuario,
@@ -99,9 +100,52 @@ function updateTrophies(id,trophies){
     `;
     database.execute(sqlCommand);
 }
+
+function updateProfile(userid, username, gamertag, profilePicture){
+    console.log("UserModel acessado > função:updateTrophies");
+
+    var sqlCommand = ''
+
+    sqlCommand = `
+        UPDATE usuario
+        SET usuario = '${username}'
+        WHERE idUsuario = ${userid};
+    `;
+    database.execute(sqlCommand);
+    
+    sqlCommand = `
+        UPDATE usuario
+        SET gamertag = '${gamertag}'
+        WHERE idUsuario = ${userid};
+    `
+    database.execute(sqlCommand);
+
+    sqlCommand = `   
+        UPDATE usuario
+        SET fotoPerfil = '${profilePicture}'
+        WHERE idUsuario = ${userid};
+    `
+    database.execute(sqlCommand);
+}
+
+function getProfileData(userid){
+    console.log("UserModel acessado > function:getProfilePicture");
+
+    var sqlCommand = `
+        SELECT idUsuario, usuario, gamertag, fotoPerfil FROM usuario WHERE idUsuario = "${userid}";
+    `;
+
+    console.log("Executando a instrução SQL: \n" + sqlCommand);
+
+    return database.execute(sqlCommand);
+      
+}
+
 module.exports = {
     login,
     register,
     getEmail,
-    updateTrophies
+    updateTrophies,
+    updateProfile,
+    getProfileData
 };

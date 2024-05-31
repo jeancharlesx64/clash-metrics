@@ -24,6 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/js/chat.js" defer></script>
     <script src="/js/modal.js" defer></script>
+    <script src="/js/modal-error-remove.js" defer></script>
 
     <!-- styles -->
     <link rel="stylesheet" href="/css/global-style.css">
@@ -38,7 +39,11 @@
         </div>
         <div class="profile-wrapper">
             <div class="profile-picture">
-                <img src="/assets/img/profile.jpg" />
+                <% if(userProfile == null || userProfile == 'null') { %>
+                    <img src="/assets/img/profile.jpg" />
+                <%}else{%>
+                    <img src="/upload/user/<%= userProfile %>" />
+                <%}%>
             </div>
             <span>Jogador</span> <span id="user_id" style="display: none;"><%= userId %></span>
             <h4 id="user_name"><%= userName %></h4>
@@ -185,7 +190,11 @@
                 <div class="upper-profile-feed">
                     <div class="profile-wrapper">
                         <div class="img-wrapper">
-                            <img src="/assets/img/profile.jpg">
+                            <% if(userProfile == null || userProfile == 'null') { %>
+                                <img src="/assets/img/profile.jpg" />
+                            <%}else{%>
+                                <img src="/upload/user/<%= userProfile %>" />
+                            <%}%>
                         </div>
                         <button class="edit-img edit-modal" >
                             <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/camera--v1.png" alt="camera--v1"/>
@@ -194,13 +203,13 @@
                 </div>
                 <div class="bottom-profile-feed">
                     <h1>
-                        jeancharlesx64 
+                        <%= userName %>
                         <button class="btn-edit edit-modal">
                             <img width="19" height="19" src="https://img.icons8.com/ios-glyphs/30/pencil--v1.png" alt="pencil--v1"/>
                         </button>
                     </h1>
                     <span>
-                        #XXXXXXXX 
+                        <%= player.tag %>
                         <button class="btn-edit edit-modal">
                             <img width="19" height="19" src="https://img.icons8.com/ios-glyphs/30/pencil--v1.png" alt="pencil--v1"/>
                         </button>
@@ -229,20 +238,31 @@
     </main>
 
     <!-- Modal -->
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
+    <div id="editModal" class="modal-edit">
+        <div class="modal-edit-content">
+            <span class="close-edit">&times;</span>
             <h2>Editar Perfil</h2>
-            <form id="editProfileForm">
+            <form action="/feed/editProfile" METHOD="POST" id="editProfileForm" enctype="multipart/form-data">
                 <label for="username">Nome de Usuário:</label><br>
-                <input type="text" id="username" name="username" value="jeancharlesx64"><br>
+                <input type="text" id="username" name="username" value="<%= userName %>" required><br>
                 <label for="gamertag">Gamertag:</label><br>
-                <input type="gamertag" id="gamertag" name="gamertag" value="#XXXXXXXX"><br>
+                <input type="gamertag" id="gamertag" name="gamertag" value="<%= player.tag %>" required><br>
                 <label for="picture">Foto de perfil:</label><br>
-                <input type="file" id="picture" accept="image/*" onchange="previewImage()"><br>
-                <div class="img-preview" id="imgPreview" >
-
+                <input type="file" id="picture-edit" name="profilePicture" accept="image/*" onchange="previewImageEdit()"><br>
+                <div class="img-edit-preview" id="img-edit-preview" >
+                    <% if(userProfile == null || userProfile == 'null') { %>
+                        <img src="/assets/img/profile.jpg" />
+                    <%}else{%>
+                        <img src="/upload/user/<%= userProfile %>" />
+                    <%}%>
                 </div>
+                <% if(userProfile == null || userProfile == 'null') { %>
+                    <input type="hidden" name="oldProfile" value="null">
+                <%}else{%>
+                    <input type="hidden" name="oldProfile" value="<%= userProfile %>">
+                <%}%>
+                <input type="hidden" name="userid" value="<%= userId %>">
+                
                 <button class="button-wrapper yellow" type="submit">
                 <div class="inner-button yellow">
                     <div class="relevant-button yellow">
@@ -257,32 +277,45 @@
         </div>
     </div>
 
-        <!-- Modal -->
-        <!-- <div id="createModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Criar post</h2>
-                <form id="editProfileForm">
-                    <label for="username">Nome de Usuário:</label><br>
-                    <input type="text" id="username" name="username" value="jeancharlesx64"><br>
-                    <label for="picture">Imagem do post:</label><br>
-                    <input type="file" id="picture" accept="image/*" onchange="previewImage()"><br>
-                    <div class="img-preview" id="imgPreview" >
-    
-                    </div>
-                    <button class="button-wrapper yellow" type="submit">
-                    <div class="inner-button yellow">
-                        <div class="relevant-button yellow">
-                            <div class="top-relevant-button yellow">
-                                <div class="shine-ball-button"></div>
-                            </div>
-                            <span class="text-button">Salvar</span>
+    <!-- Modal -->
+    <div id="createModal" class="modal-create">
+        <div class="modal-create-content">
+            <span class="close-create">&times;</span>
+            <h2>Criar postagem</h2>
+            <form id="createProfileForm" enctype="multipart/form-data">
+                <label for="description">Descrição do post:</label><br>
+                <input type="text" id="description" name="description" placeholder="Compartilhe sua conquista! ;)" required><br>
+                <label for="picture">Imagem do post:</label><br>
+                <input type="file" id="picture-create" accept="image/*" onchange="previewImageCreate()" required><br>
+                <div class="img-create-preview" id="img-create-preview" >
+
+                </div>
+                <button class="button-wrapper green" type="submit">
+                <div class="inner-button green">
+                    <div class="relevant-button green">
+                        <div class="top-relevant-button green">
+                            <div class="shine-ball-button"></div>
                         </div>
+                        <span class="text-button">Criar</span>
                     </div>
-                </button>
-                </form>
+                </div>
+            </button>
+            </form>
+        </div>
+    </div>
+
+    <% if (hasError) { %>
+        <div id="modalErro" class="modal">
+            <div class="modal-content" id="modalContent">
+                <div class="header-modal-erro">
+                    <img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/box-important--v1.png"
+                        alt="box-important--v1" />
+                </div>
+                <div class="modal-erros" id="modal_erros">
+                   <p style="text-align: center; color: red;"> <%= errorMessage %> </p>
+                </div>
             </div>
-        </div> -->
-    
+        </div>
+    <% } %>
 </body>
 </html>

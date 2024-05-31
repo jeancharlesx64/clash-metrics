@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require("../controllers/userController");
+const uploadUser = require('../middleware/uploadProfile');
 
 // Rota raiz
 router.get('/', async function(req, res) {    
@@ -23,20 +24,35 @@ router.get('/', async function(req, res) {
             player.clanName = 'Sem clã'
             player.clanTag = '#XXXXXXXX'
         }
- 
-        player.badgeUrl = imgUrl;
 
-        // atualizando os troféus
-        let isTrophiesUpdated = userController.getNewTrophies(user.session_userId, player.trophies);
-        if(!isTrophiesUpdated){
-            console.log('erro ao atualizar a quantidade de troféus')
+        let errorMessage = '';
+        let hasError = false;
+
+        let hasEdited = false;
+
+        if(req.session.hasError){
+            errorMessage = req.session.errorMessage;
+            hasError = req.session.hasError;
+
+            delete req.session.hasError;
+            delete req.session.errorMessage;
+
+            console.log(errorMessage);
         }
+        
+        // // atualizando o perfil
+        let profileData = await userController.getProfileData(user.session_userId);
+
+        player.badgeUrl = imgUrl;
         res.render('feed', {
             userId: user.session_userId,
-            userName: user.session_userName,
             userEmail: user.session_userEmail,
+            userName: profileData.userName,
+            userProfile: profileData.userProfile,
             player: player,
-            currentDeck: player.currentDeck
+            hasError: hasError,
+            errorMessage: errorMessage,
+            hasEdited: hasEdited
         });
 
     }else{
@@ -48,6 +64,10 @@ router.get('/', async function(req, res) {
     }
 
 });
+
+router.post('/editProfile', uploadUser.single('profilePicture'), function(req, res){
+    userController.updateProfile(req,res);
+})
 
 router.get('/logout', (req, res) => {
     req.session.destroy((err) => {

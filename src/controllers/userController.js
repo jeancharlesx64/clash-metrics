@@ -1,10 +1,14 @@
 var userModel = require('../models/userModel');
 const axios = require('axios');
+const { response } = require('express');
 require('dotenv').config()
+const fs = require('fs');
+const path = require('path');
 
 function authLogin(req,res){
     var email = req.body.email;
     var password = req.body.password;
+
     
     userModel.login(email,password).then((resultQuery)=>{
             console.log(resultQuery.success);
@@ -17,6 +21,7 @@ function authLogin(req,res){
                     session_userId: resultQuery.bd_userId,
                     session_userName: resultQuery.bd_userName,
                     session_userEmail: resultQuery.bd_userEmail,
+                    session_userProfile: resultQuery.bd_userProfile
                 };
 
                 console.log(req.session.userGamertag);
@@ -68,6 +73,51 @@ async function validateRegister(req, res) {
         }
         res.redirect('/register');
     }
+}
+async function updateProfile(req, res){
+
+    let profilePicture = req.body.oldProfile;
+    
+    let filepath = path.join(__dirname, '../../public/upload/user', profilePicture);
+    if(req.file){
+        profilePicture = req.file.filename;
+        filepath = path.join(__dirname, '../../public/upload/user', profilePicture);
+    }
+
+    const userid = req.body.userid;
+    const username = req.body.username;
+    const gamertag = req.body.gamertag;
+
+
+    console.log(profilePicture);
+    const isGamertagValidated = await validateGamertag(gamertag);
+
+    if(!isGamertagValidated && !req.file){
+        req.session.errorMessage = 'A nova gamertag não existe ou está inválida!';
+        req.session.hasError = true;
+        res.redirect('/feed');
+        return false
+    }else if(!isGamertagValidated){
+        req.session.errorMessage = 'A nova gamertag não existe ou está inválida!';
+        req.session.hasError = true;
+        fs.unlink(filepath, (err) => {
+            if (err) {
+                console.error('Erro ao apagar o arquivo:', err);
+            } else {
+                console.log('Arquivo apagado:', filepath);
+            }
+        });
+        res.redirect('/feed');
+        return false
+
+    }
+
+    userModel.updateProfile(userid, username, gamertag, profilePicture);
+
+    req.session.hasEdited = true;
+    res.redirect('/feed');
+
+    
 }
 
 async function validateGamertag(gamertag) {
@@ -144,6 +194,19 @@ async function getNewTrophies(id, trophies){
     }
 
 }
+
+async function getProfileData(userid){
+    const response = await userModel.getProfileData(userid)
+
+    const userData = {
+        userId: response[0].idUsuario,
+        userName: response[0].usuario,
+        userGamertag: response[0].gamertag,
+        userProfile: response[0].fotoPerfil
+    }
+    return userData;
+}
+
 module.exports = {
     authLogin,
     validateGamertag,
@@ -151,5 +214,7 @@ module.exports = {
     getPlayerDataAPI,
     getClanBadge,
     getBadgeImageUrl,
-    getNewTrophies
+    getNewTrophies,
+    updateProfile,
+    getProfileData
 }

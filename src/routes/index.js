@@ -19,10 +19,7 @@ router.get('/login', function(req,res){
 
         if(req.session.hasRegistered){
             hasRegistered = req.session.hasRegistered;
-
-            
             delete req.session.hasRegistered;
-
         }
 
         if(req.session.hasErrorLogin){
@@ -50,6 +47,7 @@ router.get('/login', function(req,res){
 router.post('/login', function(req,res){
     // A solicitação é do tipo POST, então você pode continuar com o processamento
     userController.authLogin(req,res);
+
 });
 
 

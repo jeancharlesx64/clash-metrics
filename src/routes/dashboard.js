@@ -7,8 +7,10 @@ router.get('/', async function(req, res) {
     if (req.session.authenticated) {
 
         const user = req.session.user;
+        // atualizando o perfil
+        let profileData = await userController.getProfileData(user.session_userId);
 
-        const player = await userController.getPlayerDataAPI(req.session.userGamertag);
+        const player = await userController.getPlayerDataAPI(profileData.userGamertag);
         
         let imgName = '';
         let imgUrl = '';
@@ -26,15 +28,19 @@ router.get('/', async function(req, res) {
  
         player.badgeUrl = imgUrl;
 
+
+
         // atualizando os troféus
-        let isTrophiesUpdated = userController.getNewTrophies(user.session_userId, player.trophies);
+        let isTrophiesUpdated = await userController.getNewTrophies(user.session_userId, player.trophies);
         if(!isTrophiesUpdated){
             console.log('erro ao atualizar a quantidade de troféus')
         }
+
         res.render('dashboard', {
             userId: user.session_userId,
-            userName: user.session_userName,
             userEmail: user.session_userEmail,
+            userName: profileData.userName,
+            userProfile: profileData.userProfile,
             player: player,
             currentDeck: player.currentDeck
         });

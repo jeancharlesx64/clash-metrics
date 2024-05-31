@@ -37,7 +37,11 @@
         </div>
         <div class="profile-wrapper">
             <div class="profile-picture">
-                <img src="/assets/img/profile.jpg" />
+                <% if(userProfile == null || userProfile == 'null') { %>
+                    <img src="/assets/img/profile.jpg" />
+                <%}else{%>
+                    <img src="/upload/user/<%= userProfile %>" />
+                <%}%>
             </div>
             <span>Jogador</span>
             <h4><%= userName %></h4>

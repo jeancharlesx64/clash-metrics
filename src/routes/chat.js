@@ -9,10 +9,14 @@ router.get('/', async function(req,res){
 
         const player = await userController.getPlayerDataAPI(req.session.userGamertag);
 
+        // atualizando o perfil
+        let profileData = await userController.getProfileData(user.session_userId);
+
         res.render('chat', {
             userId: user.session_userId,
-            userName: user.session_userName,
             userEmail: user.session_userEmail,
+            userName: profileData.userName,
+            userProfile: profileData.userProfile,
             player: player,
             currentDeck: player.currentDeck
         });
