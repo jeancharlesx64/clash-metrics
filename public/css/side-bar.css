@@ -37,6 +37,10 @@ body{
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid #ffbd2f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .profile-picture > img{
     width: 100%;

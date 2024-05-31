@@ -189,9 +189,13 @@
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid rgba(58, 58, 58, 0.089);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .upper-profile-feed .img-wrapper img{
-    height: 100%;
+    width: 100%;
 }
 .upper-profile-feed .profile-wrapper{
     position: relative;
