@@ -30,10 +30,10 @@ router.get('/', async function(req, res) {
 
 
 
-        // atualizando os troféus
-        let isTrophiesUpdated = await userController.getNewTrophies(user.session_userId, player.trophies);
-        if(!isTrophiesUpdated){
-            console.log('erro ao atualizar a quantidade de troféus')
+        // atualizando os dados do usuario
+        let isStatisticUpdated = await userController.updateStatistic(user.session_userId, player.trophies, player.wins, player.losses, (player.battleCount - (player.wins + player.losses)));
+        if(!isStatisticUpdated){
+            console.log('erro ao atualizar a estatisticas')
         }
 
         res.render('dashboard', {

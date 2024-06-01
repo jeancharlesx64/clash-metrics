@@ -37,28 +37,56 @@ function login(email, password) {
     });;
 }
 
-function register(username, email, password, gamertag){
-    var sqlCommand = `
-        INSERT INTO usuario(idUsuario, usuario, email, senha, gamertag, dataCriacao) VALUE
-            (DEFAULT, "${username}", "${email}", "${password}", "${gamertag}", NOW());
-    `;
+async function register(username, email, password, gamertag){
 
-    console.log("Executando a instrução SQL: \n" + sqlCommand);
-    return database.execute(sqlCommand).then(() => { 
+    try {
+        var sqlCommand = `
+            INSERT INTO usuario(idUsuario, usuario, email, senha, gamertag, dataCriacao) VALUE
+                (DEFAULT, "${username}", "${email}", "${password}", "${gamertag}", NOW());
+        `;
+
+        let userData = await database.execute(sqlCommand);
+        
+        let newSqlCommand = `
+            INSERT INTO estatistica VALUE
+            (DEFAULT, NULL, NULL, NULL, NULL, ${userData.insertId});
+        `;
+    
+        await database.execute(newSqlCommand);
+        
         return { 
             success: true,
             message: 'Cadastrado com sucesso!' 
-        
         };
-    })
-    .catch(error => {
+    } catch(error) {
         console.error('Erro ao cadastrar:', error);
+        
         return { 
             success: false,
-            message: 'Ocorreu um erro durante o cadastro, verifique a intrução SQL' 
-        
+            message: 'Ocorreu um erro durante o cadastro, verifique a instrução SQL' 
         };
-    });;
+    }
+    // var sqlCommand = `
+    //     INSERT INTO usuario(idUsuario, usuario, email, senha, gamertag, dataCriacao) VALUE
+    //         (DEFAULT, "${username}", "${email}", "${password}", "${gamertag}", NOW());
+    // `;
+
+    // console.log("Executando a instrução SQL: \n" + sqlCommand);
+    // return database.execute(sqlCommand).then(() => { 
+    //     return { 
+    //         success: true,
+    //         message: 'Cadastrado com sucesso!' 
+        
+    //     };
+    // })
+    // .catch(error => {
+    //     console.error('Erro ao cadastrar:', error);
+    //     return { 
+    //         success: false,
+    //         message: 'Ocorreu um erro durante o cadastro, verifique a intrução SQL' 
+        
+    //     };
+    // });;
 }
 
 
@@ -89,16 +117,6 @@ function getEmail(email) {
         console.error('Erro ao autenticar o email no login:', error);
         return { success: false};
     });;
-}
-function updateTrophies(id,trophies){
-    console.log("UserModel acessado > função:updateTrophies");
-
-    var sqlCommand = `
-        UPDATE usuario
-        SET trophies = ${trophies}
-        WHERE idUsuario = ${id}
-    `;
-    database.execute(sqlCommand);
 }
 
 function updateProfile(userid, username, gamertag, profilePicture){
@@ -141,11 +159,51 @@ function getProfileData(userid){
       
 }
 
+function updateStatistic(userid, trophies, wins, losses, partymode){
+    console.log("UserModel acessado > função:updateStatistic");
+
+    try{
+        var sqlCommand = ''
+    
+        sqlCommand = `
+            UPDATE estatistica
+            SET trofeus = ${trophies}
+            WHERE fkUsuario = ${userid};
+        `;
+        database.execute(sqlCommand);
+    
+        sqlCommand = `
+            UPDATE estatistica
+            SET vitorias = ${wins}
+            WHERE fkUsuario = ${userid};
+        `;
+        database.execute(sqlCommand);
+        
+        sqlCommand = `
+            UPDATE estatistica
+            SET derrotas = ${losses}
+            WHERE fkUsuario = ${userid};
+        `
+        database.execute(sqlCommand);
+    
+        sqlCommand = `   
+            UPDATE estatistica
+            SET partyMode = ${partymode}
+            WHERE fkUsuario = ${userid};
+        `
+        database.execute(sqlCommand);
+        return true;
+
+    }catch(e){
+        console.log(e)
+        return false;
+    }
+}
 module.exports = {
     login,
     register,
     getEmail,
-    updateTrophies,
+    updateStatistic,
     updateProfile,
     getProfileData
 };

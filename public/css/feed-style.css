@@ -264,10 +264,13 @@
     height: 220px;
     width: 90%;
     margin: 0 auto;
+    margin-bottom: 20px;
+    
 }
 .middle-profile-feed span{
     font-size: 12px;
     font-family: 'Montserrat';
+
 }
 .posts{
     height: 340px;
@@ -301,7 +304,6 @@
     margin: 10px auto;
     display: block;
     cursor: pointer;
-
 }
 .btn-create .text-button{
     font-family: 'cr', Arial, Helvetica, sans-serif;

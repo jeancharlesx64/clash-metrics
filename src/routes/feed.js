@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require("../controllers/userController");
 const uploadUser = require('../middleware/uploadProfile');
+const uploadPost = require('../middleware/uploadPost');
 
 // Rota raiz
 router.get('/', async function(req, res) {    
@@ -56,8 +57,7 @@ router.get('/', async function(req, res) {
         });
 
     }else{
-        req.session.hasErrorLogin = true;
-        req.session.errorMessageLogin = 'Faça login antes de acessar o Feed!';
+        
         console.log(req.session.errorMessageLogin)
         
         res.redirect('/login');
@@ -67,6 +67,10 @@ router.get('/', async function(req, res) {
 
 router.post('/editProfile', uploadUser.single('profilePicture'), function(req, res){
     userController.updateProfile(req,res);
+})
+
+router.post('/createPost', uploadPost.single('postPicture'), function(req, res){
+    userController.createPost(req,res);
 })
 
 router.get('/logout', (req, res) => {

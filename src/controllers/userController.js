@@ -120,6 +120,15 @@ async function updateProfile(req, res){
     
 }
 
+async function createPost(req, res){
+    
+    console.log(req.body.userid)
+    console.log(req.body.description)
+    console.log(req.file.filename)
+    // let response = await userModel.createPost()
+    
+}
+
 async function validateGamertag(gamertag) {
     try {
         const apiKey = process.env.API_KEY;
@@ -185,14 +194,14 @@ async function getClanBadge(badgeId) {
     }
     return null;
 }
-async function getNewTrophies(id, trophies){
-    if(id != null && trophies != null){
-        await userModel.updateTrophies(id, trophies);
-        return
-    }else{
-        return 
-    }
 
+async function updateStatistic(userid, trophies, wins, losses, partymode){
+    let response = await userModel.updateStatistic(userid, trophies, wins, losses, partymode);
+    if(response){
+        return true;
+    }else{
+        return false
+    }
 }
 
 async function getProfileData(userid){
@@ -207,6 +216,7 @@ async function getProfileData(userid){
     return userData;
 }
 
+
 module.exports = {
     authLogin,
     validateGamertag,
@@ -214,7 +224,8 @@ module.exports = {
     getPlayerDataAPI,
     getClanBadge,
     getBadgeImageUrl,
-    getNewTrophies,
+    updateStatistic,
     updateProfile,
-    getProfileData
+    getProfileData,
+    createPost
 }

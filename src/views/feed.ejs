@@ -282,14 +282,15 @@
         <div class="modal-create-content">
             <span class="close-create">&times;</span>
             <h2>Criar postagem</h2>
-            <form id="createProfileForm" enctype="multipart/form-data">
+            <form id="createProfileForm" action="/feed/createPost" METHOD="POST" enctype="multipart/form-data">
                 <label for="description">Descrição do post:</label><br>
                 <input type="text" id="description" name="description" placeholder="Compartilhe sua conquista! ;)" required><br>
                 <label for="picture">Imagem do post:</label><br>
-                <input type="file" id="picture-create" accept="image/*" onchange="previewImageCreate()" required><br>
+                <input type="file" id="picture-create" name="postPicture" accept="image/*" onchange="previewImageCreate()" required><br>
                 <div class="img-create-preview" id="img-create-preview" >
 
                 </div>
+                <input type="hidden" name="userid" value="<%= userId %>">
                 <button class="button-wrapper green" type="submit">
                 <div class="inner-button green">
                     <div class="relevant-button green">
