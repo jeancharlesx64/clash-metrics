@@ -34,6 +34,7 @@ CREATE TABLE post(
 
 INSERT INTO usuario VALUE
     (DEFAULT, 'jeancharlesx64', 'jean.albuquerque@sptech.school', 'jeancharles123', '#9PPYCYC28',NULL, NOW());
+    
 INSERT INTO estatistica VALUE
 	(DEFAULT, NULL, NULL, NULL, NULL, 1);
     

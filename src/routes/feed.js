@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require("../controllers/userController");
+const postController = require("../controllers/postController");
 const uploadUser = require('../middleware/uploadProfile');
 const uploadPost = require('../middleware/uploadPost');
 
@@ -82,7 +83,7 @@ router.post('/editProfile', uploadUser.single('profilePicture'), function(req, r
 })
 
 router.post('/createPost', uploadPost.single('postPicture'), function(req, res){
-    userController.createPost(req,res);
+    postController.createPost(req,res);
 })
 
 router.get('/logout', (req, res) => {
