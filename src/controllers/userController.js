@@ -121,12 +121,41 @@ async function updateProfile(req, res){
 }
 
 async function createPost(req, res){
+    const postPicture = req.file.filename;
+    const filepath = path.join(__dirname, '../../public/upload/user', postPicture);
+
+    const userid = req.body.userid;
+    const description = req.body.description;
+
+    if(description.length >= 80 || description.length == ''){
+        fs.unlink(filepath, (err) => {
+            if (err) {
+                console.error('Erro ao apagar o arquivo:', err);
+            } else {
+                console.log('Arquivo apagado:', filepath);
+            }
+        });
+        req.session.errorMessage = 'A descrição deve conter menos de 80 caracteres! Seja breve';
+        req.session.hasError = true;
+        res.redirect('/feed');
+        return false;
+    }
+
     
-    console.log(req.body.userid)
-    console.log(req.body.description)
-    console.log(req.file.filename)
-    // let response = await userModel.createPost()
+
+    let response = userModel.createPost(userid, description, postPicture);
     
+    console.log(response)
+    if(response){
+        req.session.hasCreated = true;
+        res.redirect('/feed');
+        return true;
+    }else{
+        req.session.hasError = false;
+        req.session.errorMessage = 'Ocorreu algum erro ao criar sua postagem :('
+        res.redirect('/feed');
+        return false;
+    }
 }
 
 async function validateGamertag(gamertag) {

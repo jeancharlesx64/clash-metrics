@@ -25,6 +25,7 @@
     <script src="/js/chat.js" defer></script>
     <script src="/js/modal.js" defer></script>
     <script src="/js/modal-error-remove.js" defer></script>
+    <script src="/js/modal-registered-remove.js" defer></script>
 
     <!-- styles -->
     <link rel="stylesheet" href="/css/global-style.css">
@@ -304,6 +305,33 @@
             </form>
         </div>
     </div>
+    <% if (hasEdited) { %>
+        <div id="modalRegistered" class="modal">
+            <div class="modal-content" id="modalContent">
+                <div class="header-modal-correto">
+                    <img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/box-important--v1.png"
+                        alt="box-important--v1" />
+                </div>
+                <div class="modal-erros" id="modal_erros">
+                   <p style="text-align: center; color: #40be4b;">Perfil editado com sucesso!</p>
+                </div>
+            </div>
+        </div>
+    <% } %>
+    <% if (hasCreated) { %>
+        <div id="modalRegistered" class="modal">
+            <div class="modal-content" id="modalContent">
+                <div class="header-modal-correto">
+                    <img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/box-important--v1.png"
+                        alt="box-important--v1" />
+                </div>
+                <div class="modal-erros" id="modal_erros">
+                   <p style="text-align: center; color: #40be4b;">Postagem realizada com sucesso!</p>
+                </div>
+            </div>
+        </div>
+    <% } %>
+
 
     <% if (hasError) { %>
         <div id="modalErro" class="modal">

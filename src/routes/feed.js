@@ -29,8 +29,6 @@ router.get('/', async function(req, res) {
         let errorMessage = '';
         let hasError = false;
 
-        let hasEdited = false;
-
         if(req.session.hasError){
             errorMessage = req.session.errorMessage;
             hasError = req.session.hasError;
@@ -39,6 +37,19 @@ router.get('/', async function(req, res) {
             delete req.session.errorMessage;
 
             console.log(errorMessage);
+        }
+
+        let hasEdited = false;
+        let hasCreated = false;
+
+        if(req.session.hasEdited){
+            hasEdited = req.session.hasEdited;
+            delete req.session.hasEdited;
+        }
+        
+        if(req.session.hasCreated){
+            hasCreated = req.session.hasCreated;
+            delete req.session.hasCreated;
         }
         
         // // atualizando o perfil
@@ -53,7 +64,8 @@ router.get('/', async function(req, res) {
             player: player,
             hasError: hasError,
             errorMessage: errorMessage,
-            hasEdited: hasEdited
+            hasEdited: hasEdited,
+            hasCreated: hasCreated
         });
 
     }else{
