@@ -37,6 +37,9 @@ INSERT INTO usuario VALUE
     
 INSERT INTO estatistica VALUE
 	(DEFAULT, NULL, NULL, NULL, NULL, 1);
+
+INSERT INTO post VALUE
+	(DEFAULT, 'Vocês conseguiram jogar neste desafio??', '1717436041633_ss-teste.jfif', '2024-06-03 14:34:01', 1);
     
 SELECT * FROM usuario;
 SELECT * FROM estatistica;
