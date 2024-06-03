@@ -77,13 +77,13 @@
                         Global Chat
                     </a>
                 </li>
-                <li class="nav-normal-item">
+                <!-- <li class="nav-normal-item">
                     <a href="">
                         <img width="17" height="17" src="https://img.icons8.com/glyph-neue/64/FFFFFF/trophy.png"
                          alt="trophy"/>
                         Ranking
                     </a>
-                </li>
+                </li> -->
             </ul>
         </nav>
         <div class="footer-aside">
@@ -114,8 +114,59 @@
         </header>
         <div class="inner-main">
             <div class="feed-wrapper">
+                <% if (hasPost) { %>
+                    <% posts.forEach(post => { %>
+                    <div class="post">
+                        <div class="post-header">
+                            <div class="user-info">
+                                <div class="profile-wrapper-post">
+                                    <% if(post.usuario.fotoPerfil == null || post.usuario.fotoPerfil == 'null') { %>
+                                        <img src="/assets/img/profile.jpg" />
+                                    <%}else{%>
+                                        <img src="/upload/user/<%= post.usuario.fotoPerfil %>" />
+                                    <%}%>
+                                </div>
+                                <div class="username-wrapper-post">
+                                    <p><%= post.usuario.nome %></p>
+                                    <% 
+                                        const dataCriacaoString = post.dataCriacao;
+                                        const dataCriacao = new Date(dataCriacaoString);
+                                        const horas = dataCriacao.getHours();
+                                        const minutos = dataCriacao.getMinutes();
+                                        const horaFormatada = horas < 10 ? "0" + horas : horas;
+                                        const minutosFormatados = minutos < 10 ? "0" + minutos : minutos;  
+                                    %>
+                                    <span><%= post.usuario.gamertag %> - <span><%= `${horaFormatada}:${minutosFormatados}` %></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-body">
+                            <div class="img-wrapper">
+                                <img src="/upload/post/<%= post.fotoPost %>">
+        
+                            </div>
+                        </div>
+                        <div class="post-footer">
+                            <div class="upper-footer">
+                                <p><%= post.descricao %></p>
+                            </div>
+                            <div class="footer-line"></div>
+                            <div class="bottom-footer">
+                                <div class="good-ava">
+                                    <img width="30" height="30" src="https://img.icons8.com/material-outlined/24/happy--v1.png" alt="happy--v1"/>
+                                    12
+                                </div>
+                                <div class="bad-ava">
+                                    <img width="30" height="30" src="https://img.icons8.com/material-outlined/24/sad.png" alt="sad"/>
+                                    4
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                <% } %>
                 <!-- 1 post -->
-                <div class="post">
+                <!-- <div class="post">
                     <div class="post-header">
                         <div class="user-info">
                             <div class="profile-wrapper-post">
@@ -149,44 +200,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--  -->
-                <!-- 1 post -->
-                <div class="post">
-                    <div class="post-header">
-                        <div class="user-info">
-                            <div class="profile-wrapper-post">
-                                <img src="/assets/img/profile.jpg" >
-                            </div>
-                            <div class="username-wrapper-post">
-                                <p>samuelteodoro</p>
-                                <span>#XXXXXXXX - <span>23:01</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="post-body">
-                        <div class="img-wrapper">
-                            <img src="/assets/img/ss-teste2.jfif">
-                        </div>
-                    </div>
-                    <div class="post-footer">
-                        <div class="upper-footer">
-                            <p>Alcancei a arena 17, estou em rumo á arena 18 #arena18</p>
-                        </div>
-                        <div class="footer-line"></div>
-                        <div class="bottom-footer">
-                            <div class="good-ava">
-                                <img width="30" height="30" src="https://img.icons8.com/material-outlined/24/happy--v1.png" alt="happy--v1"/>
-                                12
-                            </div>
-                            <div class="bad-ava">
-                                <img width="30" height="30" src="https://img.icons8.com/material-outlined/24/sad.png" alt="sad"/>
-                                4
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--  -->
+                </div> -->
             </div>
             <div class="profile-feed">
                 <div class="upper-profile-feed">
@@ -220,9 +234,13 @@
                 <div class="middle-profile-feed">
                     <span>Suas postagens</span>
                     <div class="posts">
-                        <!-- <div class="post-wrapper">
-                            <img src="/assets/img/ss-teste.jfif">
-                        </div> -->
+                        <% if (hasUserPosts) { %>
+                            <% userPosts.forEach(userPost => { %>
+                                <div class="post-wrapper">
+                                    <img src="/upload/post/<%= userPost.fotoPost %>">
+                                </div>
+                            <% }) %>
+                        <% } %>
                     </div>
                     <button class="button-wrapper btn-create green" type="button">
                         <div class="inner-button green">

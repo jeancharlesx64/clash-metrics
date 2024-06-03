@@ -94,9 +94,12 @@
     border-radius: 50%;
     background-color: gray;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .profile-wrapper-post img{
-    height: 100%;
+    width: 100%;
 }
 .username-wrapper-post{
     display: flex;
@@ -272,27 +275,26 @@
     font-family: 'Montserrat';
 
 }
-.posts{
-    height: 340px;
-    width: 100%;
+.posts {
+    height: 190px;
     display: flex;
     align-items: start;
-    flex-wrap: wrap;
-    gap: 1px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: hidden; 
     position: relative;
     background-color: rgba(128, 128, 128, 0.274);
     border-radius: 5px;
 }
-.posts .post-wrapper{
+
+.posts .post-wrapper {
     height: 190px;
-    width: 90px;
+    width: 90px; /* Calcula a largura de cada post-wrapper para ocupar 20% do contêiner com uma margem de 20px entre eles */
     background-color: blue;
     transition: 0.3s all;
     cursor: pointer;
     filter: brightness(0.7);
+    margin: 1px; /* Adiciona uma margem entre os post-wrapper */
 }
+
 .post-wrapper:hover{
     transform: scale(1.1);
     filter: brightness(1);

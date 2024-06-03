@@ -56,6 +56,36 @@ router.get('/', async function(req, res) {
         // // atualizando o perfil
         let profileData = await userController.getProfileData(user.session_userId);
 
+        
+        let hasPost = false;
+        let posts = {
+            descricao: '',
+            fotoPost: '',
+            dataCriacao: '',
+            usuario: {
+              nome: '',
+              gamertag: '',
+              fotoPerfil: ''
+            }
+        }
+    
+        let hasUserPosts = false;
+        let userPosts = {
+            descricao: '',
+            fotoPost: '',
+            dataCriacao: ''
+        }
+
+        posts = await postController.getPosts();
+        userPosts = await postController.getUserPosts(user.session_userId)
+
+        if(posts.length > 0){
+            hasPost = true;
+        }
+        if(userPosts.length > 0){
+            hasUserPosts = true;
+        }
+
         player.badgeUrl = imgUrl;
         res.render('feed', {
             userId: user.session_userId,
@@ -66,7 +96,11 @@ router.get('/', async function(req, res) {
             hasError: hasError,
             errorMessage: errorMessage,
             hasEdited: hasEdited,
-            hasCreated: hasCreated
+            hasCreated: hasCreated,
+            hasPost: hasPost,
+            posts: posts,
+            hasUserPosts: hasUserPosts,
+            userPosts: userPosts
         });
 
     }else{

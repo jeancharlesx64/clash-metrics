@@ -43,6 +43,19 @@ async function createPost(req, res){
     }
 }
 
+async function getPosts(){
+    const posts = await postModel.getPosts();
+
+    return posts;
+}
+
+async function getUserPosts(userId){
+    const userPosts = await postModel.getUserPosts(userId);
+
+    return userPosts
+}
 module.exports = {
-    createPost
+    createPost,
+    getPosts,
+    getUserPosts
 }
