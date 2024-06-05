@@ -99,7 +99,7 @@
     justify-content: center;
 }
 .profile-wrapper-post img{
-    width: 100%;
+    width: 110%;
 }
 .username-wrapper-post{
     display: flex;
@@ -198,7 +198,7 @@
     justify-content: center;
 }
 .upper-profile-feed .img-wrapper img{
-    width: 100%;
+    width: 110%;
 }
 .upper-profile-feed .profile-wrapper{
     position: relative;

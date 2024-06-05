@@ -43,7 +43,7 @@ body{
     justify-content: center;
 }
 .profile-picture > img{
-    width: 100%;
+    width: 110%;
 }
 .profile-wrapper span{
     margin-top: 5px;

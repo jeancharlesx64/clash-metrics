@@ -33,7 +33,7 @@ CREATE TABLE post(
 );
 
 INSERT INTO usuario VALUE
-    (DEFAULT, 'jeancharlesx64', 'jean.albuquerque@sptech.school', 'jeancharles123', '#9PPYCYC28',NULL, NOW());
+    (DEFAULT, 'jeancharlesx64', 'jean.albuquerque@sptech.school', 'jeancharles123', '#9PPYCYC28','1717551406929_jean-profile.jfif', NOW());
     
 INSERT INTO estatistica VALUE
 	(DEFAULT, NULL, NULL, NULL, NULL, 1);
@@ -44,3 +44,4 @@ INSERT INTO post VALUE
 SELECT * FROM usuario;
 SELECT * FROM estatistica;
 SELECT * FROM post;
+
