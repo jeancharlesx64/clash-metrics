@@ -32,14 +32,20 @@ CREATE TABLE post(
         CONSTRAINT postHasUsuario FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
 );
 
+ALTER TABLE post MODIFY descricao VARCHAR(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
 INSERT INTO usuario VALUE
-    (DEFAULT, 'jeancharlesx64', 'jean.albuquerque@sptech.school', 'jeancharles123', '#9PPYCYC28','1717551406929_jean-profile.jfif', NOW());
+    (DEFAULT, 'jeancharlesx64', 'jean.albuquerque@sptech.school', 'jean123', '#9PPYCYC28','1717551406929_jean-profile.jfif', NOW()),
+	(DEFAULT, 'ashi007', 'ashi.gupta@outlook.com', 'ashi123', '#RYQPCJGYY','1717552089584_ashi-profile.jfif', NOW());
     
 INSERT INTO estatistica VALUE
-	(DEFAULT, NULL, NULL, NULL, NULL, 1);
+	(DEFAULT, NULL, NULL, NULL, NULL, 1),
+    (DEFAULT, NULL, NULL, NULL, NULL, 2);
 
 INSERT INTO post VALUE
-	(DEFAULT, 'Vocês conseguiram jogar neste desafio??', '1717436041633_ss-teste.jfif', '2024-06-03 14:34:01', 1);
+	(DEFAULT, 'Vocês conseguiram jogar neste desafio??', '1717436041633_ss-teste.jfif', '2024-06-03 14:34:01', 1),
+    (DEFAULT, 'Olhem esse deck que eu criei!! 😊', '1717634182771_ashi-deck.jfif', '2024-06-05 21:36:23', 2);
     
 SELECT * FROM usuario;
 SELECT * FROM estatistica;
