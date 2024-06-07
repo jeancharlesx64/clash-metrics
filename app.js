@@ -50,6 +50,12 @@ app.use('/', indexRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/chat', chatRouter);
 app.use('/feed', feedRouter);
+
+// "middleware" para rotas não definidas 
+app.use((req, res, next) => {
+    res.status(404).render('notFound');
+});
+  
 // =====================================
 
 
