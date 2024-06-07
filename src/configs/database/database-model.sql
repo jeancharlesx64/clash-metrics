@@ -48,7 +48,8 @@ INSERT INTO post VALUE
 	(DEFAULT, 'Vocês conseguiram jogar neste desafio??', '1717436041633_ss-teste.jfif', '2024-06-03 14:34:01', 1),
     (DEFAULT, 'Olhem esse deck que eu criei!! 😊', '1717634182771_ashi-deck.jfif', '2024-06-05 21:36:23', 2),
     (DEFAULT, 'Me expulsaram do clã 😡😡😡', '1717638577476_jean-clan.jfif', '2024-06-05 22:49:37', 1),
-    (DEFAULT, 'Sequência de vitórias 😎 samuel joga demais hehe', '1717639495730_jean-victory.jfif', '2024-06-05 23:04:56', 1);
+    (DEFAULT, 'Sequência de vitórias 😎 samuel joga demais hehe', '1717639495730_jean-victory.jfif', '2024-06-05 23:04:56', 1),
+	(DEFAULT, '6 anos de muita habilidade 🥱', '1717726876174_samuel-6years.jfif', '2024-06-06 23:21:16', 3);
     
 SELECT * FROM usuario;
 SELECT * FROM estatistica;
