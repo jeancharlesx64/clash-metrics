@@ -20,3 +20,25 @@ To complement my learning, I wanted to challenge myself with the use of differen
 
 ## Installation
 Before booting the installation, make sure to create an account to obtain the official Supercell API key, create your account here: [https://developer.clashroyale.com/#/](https://developer.clashroyale.com/#/). If you have a server to enter the IP, ignore the following explanation: If you do not have a server, you will need to use a Proxy to guarantee your API Key, you can use the Royale API proxy available here: [https://docs.royaleapi.com/proxy.html](https://docs.royaleapi.com/proxy.html). Finally, also make sure you have NodeJS installed and updated, as well as MySQL and NPM to proceed.
+
+
+Clone this repository with the following command in your cmd
+```bash
+git clone https://github.com/jeancharlesx64/clash-metrics
+```
+Access the cloned directory using the command
+```bash
+cd clash-metrics
+```
+open your coding IDE, if you use Visual Studio Code, use the command to open automatically
+```bash
+code .
+```
+
+
+Access the src/configs/database directory and have access to the database base structure script, create the structure using MySQL and then create an environment variables file and make the necessary changes, use .env-example as support
+After the configuration of the entire environment has been completed, to initialize the web server, go to cmd and execute the command
+```bash
+node app.js
+```
+Ready, make sure that the connection to the database has been made and then access the web platform in your browser. Happy studying!
