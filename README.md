@@ -19,4 +19,4 @@ The technologies used in the development of the project were HTML5, CSS3, and JS
 To complement my learning, I wanted to challenge myself with the use of different modules and features, such as the use of an External API using the official Supercell API to link and obtain player data, and the use of the websockets protocol for bidirectional communication in real time for Chat functionality
 
 ## Installation
-Before booting the installation, make sure to create an account to obtain the official Supercell API key
+Before booting the installation, make sure to create an account to obtain the official Supercell API key, create your account here: [https://developer.clashroyale.com/#/](https://developer.clashroyale.com/#/). If you have a server to enter the IP, ignore the following explanation: If you do not have a server, you will need to use a Proxy to guarantee your API Key, you can use the Royale API proxy available here: [https://docs.royaleapi.com/proxy.html](https://docs.royaleapi.com/proxy.html). Finally, also make sure you have NodeJS installed and updated, as well as MySQL and NPM to proceed.
